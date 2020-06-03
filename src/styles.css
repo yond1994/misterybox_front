@@ -1,0 +1,20 @@
+:root {
+  --main-bg-color2: rgb(245, 245, 245);
+  --main-bg-color: rgb(69, 69, 69);
+  --sombras2: 0 0 0.5em 0.25em rgb(255, 255, 255) inset;
+  --sombras: 0 0 .5em .25em rgba(0,0,0,.2) inset;
+}
+body {
+  /*background: rgb(248,242,244);*/
+  /*background: radial-gradient(circle, rgba(248,242,244,1) 0%, rgba(116,123,132,1) 100%);*/
+  background: rgb(231,231,231);
+  background: radial-gradient(circle, rgba(231,231,231,1) 0%, rgb(147, 147, 147) 100%);
+}
+.modal-dialog {
+  box-shadow: 7px 12px 14px #505050!important;
+}
+
+.modal-content {
+  border: 0px solid rgba(0, 0, 0, .2)!important;
+  border-radius: 0rem!important;
+}

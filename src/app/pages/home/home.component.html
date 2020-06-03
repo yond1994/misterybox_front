@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h2 class="top-add-5 titleone"><span style="color: white">WILL OPEN SATURDAY 06/20 AT 5PM</span>
+        {{day}}:{{hours}}:{{minutes}}:{{seconds}} WAIT TIME</h2>
+    </div>
+    <div class="col-12 text-center">
+      <h1 class="texto-borde">THE MYSTERYBOX <br> OF RACKS.</h1>
+      <div class="floor">
+        <div class='shadow'>
+          <!--<h1 class="texto-borde">THE MYSTERYBOX OF RACKS.</h1>-->
+          <!--<img src="assets/img/logo_racks_negro.png">-->
+        </div>
+        <div class='shadow2'></div>
+        <div class='shadow3'></div>
+        <div class="box">
+
+          <div *ngIf="state.open" class="heart-gift">
+            <img (click)="opendetail()" class="imgtapa" src="assets/img/tapasdefault.png">
+          </div>
+          <!--<i *ngIf="!state.open" class="fa fa-heart heart-gift"></i>-->
+          <div class="{{state.open    ? 'lid open': state.wasOpen ? 'lid close': 'lid' }} cursor" (click)="toggleBox()">
+            <div class="qmark">
+              <!--{{state.open? '!' : '?' }}-->
+            </div>
+            <div class="face ltop">
+              <img class="imgtapabox" src="assets/img/logo_racks_blanco.png">
+            </div>
+            <div class="face lleft"></div>
+            <div class="face lright"></div>
+          </div>
+
+          <div class="face top"></div>
+          <div class="face left"></div>
+          <div class="face right">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class=" col-6 col-md-3">
+            <h3 class="no-movil" style="float: right;  font-weight: bold;">
+              MISTERYBOX <br>
+              OF THE RACKS
+            </h3>
+          </div>
+          <div class=" col-6 col-md-3">
+            <p (click)="openmodal()" class="cursor whats"  style="margin-top: 40px;  font-weight: bold;">WHAT IS THIS?</p>
+          </div>
+          <div class="col-md-2 col-xs-12 no-movil">
+
+          </div>
+          <div class="col-md-4 col-xs-12 no-movil">
+            <p style="float: right">
+              Exclusive product for rack members <br>
+              INFECTED DROP #6</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
