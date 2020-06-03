@@ -3,6 +3,7 @@ import {timer} from 'rxjs';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {InfoComponent} from '../../components/info/info.component';
 import {DetailComponent} from '../../components/detail/detail.component';
+import {LoginComponent} from '../../auth/pages/login/login.component';
 
 @Component({
   selector: 'app-home',
@@ -73,6 +74,13 @@ export class HomeComponent implements OnInit {
       title: 'Presentamos 🔥Racks Members🔥'
     };
     this.bsModalRef = this.modalService.show(DetailComponent, {initialState, class: 'modal-lg'});
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
+  login() {
+    const initialState = {
+      title: 'Login'
+    };
+    this.bsModalRef = this.modalService.show(LoginComponent, {initialState});
     this.bsModalRef.content.closeBtnName = 'Close';
   }
 

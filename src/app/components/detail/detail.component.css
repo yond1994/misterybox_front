@@ -257,4 +257,7 @@ ul li {
   .product-name {
     display: none;
   }
+  .card {
+    height: 465px;
+  }
 }

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   public headers: HttpHeaders;
-  public readonly url: string = 'https://api.credimasoriente.com/public';
+  public readonly url: string = environment.apiurl;
   constructor(public http: HttpClient, private router: Router) {
     this.headers = new HttpHeaders({
       'Accept': 'application/json',
@@ -30,13 +30,7 @@ export class ApiService {
   }
   public getUrl(endpoint: string, params?: IUrlParams): string {
     return this.url
-      + '/api'
       + (endpoint || '/')
-      + this.parseParams(params);
-  }
-
-  public getUrldns(endpoint: string, params?: IUrlParams): string {
-    return (endpoint || '/')
       + this.parseParams(params);
   }
   private parseParams(params: IUrlParams): string {

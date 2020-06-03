@@ -1,0 +1,11 @@
+.btn-primary {
+  background-color:#454545;
+  border-color:#454545;
+}
+.btn-primary:active {
+  background-color:#454545!important;
+  border-color:#454545!important;
+}
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus, .show>.btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(177, 177, 177, 0.5)!important;
+}
