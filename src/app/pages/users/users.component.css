@@ -1,0 +1,13 @@
+.paddin10 {
+  padding: 10px;
+}
+.paddin5 {
+  padding: 5px;
+}
+
+
+@media screen and (max-width: 600px) {
+  .paddin5 {
+    padding: 0px!important;
+  }
+}

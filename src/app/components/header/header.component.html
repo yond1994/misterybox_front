@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+  <a class="navbar-brand"><img style="width: 5rem" src="assets/img/logo_racks_blanco.png"></a>
+  <button (click)="openmenu()" class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="{{displaymenu  ? 'viewmovil navbar-collapse offcanvas-collapse' : 'navbar-collapse offcanvas-collapse' }}" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link"  routerLink="/users" routerLinkActive="active">Participants <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  routerLink="/awards" routerLinkActive="active">Premios</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link cursor" (click)="logout()" routerLinkActive="active">Salir</a>
+      </li>
+    </ul>
+  </div>
+</nav>

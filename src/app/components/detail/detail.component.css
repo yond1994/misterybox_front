@@ -7,7 +7,7 @@
 /*product info */
 
 h1 {
-  color: #ff6d39;
+  color: #f1d615!important;
   font-weight: bold;
   font-size: 22px;
   margin-top: 21px;
@@ -215,7 +215,7 @@ ul li {
 
 .left img {
   margin-left: -88px;
-  margin-top: 60px;
+  margin-top: 10px;
 }
 
 .right {
@@ -232,8 +232,11 @@ ul li {
   position: absolute;
   margin-left: 45%;
   height: 394px;
-  width: 305px;
+  width: 290px;
   z-index: 10;
+}
+.w-image {
+  width: 100%!important;
 }
 @media screen and (max-width: 600px) {
   .left {
@@ -249,7 +252,7 @@ ul li {
   .product-info {
     position: relative;
     margin-left: 10%;
-    height: 394px;
+    height: auto!important;
     width: 100%;
     z-index: 10;
     margin-top: 80%;
@@ -259,5 +262,11 @@ ul li {
   }
   .card {
     height: 465px;
+  }
+  .w-image {
+    width: 70%!important;
+  }
+  .details {
+    width: 81%!important;
   }
 }

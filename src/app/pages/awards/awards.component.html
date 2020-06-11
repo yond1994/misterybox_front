@@ -1,39 +1,26 @@
 
+
 <app-header></app-header>
 
 <main role="main" class="container">
   <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded box-shadow">
     <div class="lh-100">
       <h6 class="mb-0 text-white lh-100">Lista de premios</h6>
-
     </div>
   </div>
 
   <div class="my-3 p-3 bg-white rounded box-shadow">
-    <div class="border-bottom border-gray pb-2 mb-0 row">
-      <div class="col-6">  <h6 class="">Participantes </h6></div>
-      <div class="col-6">   <i (click)="refreshuser()" class="fa fa-refresh float-right paddin10 cursor"></i>
-        <button (click)="random()" type="submit" class="btn btn-primary float-right">Asignar Premios </button>
-      </div>
-    </div>
-
-    <div class="text-muted  text-center w-100" *ngIf="list.length == 0">
-      <h1 class="paddin10">NO SE REGISTRARON USUARIOS</h1>
-    </div>
+    <h6 class="border-bottom border-gray pb-2 mb-0">Lista de productos</h6>
     <div class="media text-muted pt-3" *ngFor="let item of list; index as i;">
-      <div class="col-11  media">
-        <img *ngIf="item?.box" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src="{{item.box?.custom_data?.imgprimary}}" data-holder-rendered="true">
+      <div class="col-11 media">
+        <img *ngIf="item?.custom_data?.imgprimary" data-src="" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src="{{item?.custom_data?.imgprimary}}" data-holder-rendered="true">
         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">  {{item.name}}</strong>
-          ({{item.idoriginal}})
-          {{item?.box?.name}}
-          <!--{{item.email}}-->
+          <strong class="d-block text-gray-dark"><span>{{item.identification == 'comun' ? '🎁' : '💎' }}</span>{{item.name}} </strong>
+          {{item.description}}
         </p>
       </div>
-      <div class="col-1 ">
-        <span class="text-center">
-          <i *ngIf="item.box" (click)="opendetail(item?.box?._id)" class="fa fa-dropbox cursor paddin5"></i>
-          <i (click)="detailinfo(item._id, item.custom_data)" class="fa fa-address-card-o cursor paddin5" aria-hidden="true"></i>
+      <div class="col-1">
+        <span class="text-center"><i (click)="delete(item._id)" class="fa fa-trash cursor"></i>
           <!--<i class="fa fa-edit cursor"></i>-->
         </span>
       </div>

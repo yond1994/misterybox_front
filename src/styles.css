@@ -18,3 +18,17 @@ body {
   border: 0px solid rgba(0, 0, 0, .2)!important;
   border-radius: 0rem!important;
 }
+.cursor {
+  cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+  .no-movil {
+    display: none;
+  }
+  .navbar-collapse {
+    display: none;
+  }
+  .viewmovil {
+    display: block!important;
+  }
+}

@@ -17,6 +17,9 @@ import {AuthGuard} from './auth/guards/auth.guard';
 import { LoginComponent } from './auth/pages/login/login.component';
 import {AuthmbService} from './auth/authmb.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AwardsComponent } from './pages/awards/awards.component';
+import { HeaderComponent } from './components/header/header.component';
+import { InfoextraComponent } from './components/infoextra/infoextra.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     InfoComponent,
     DetailComponent,
     UsersComponent,
-    LoginComponent
+    LoginComponent,
+    AwardsComponent,
+    HeaderComponent,
+    InfoextraComponent
   ],
   imports: [
     LoadingBarHttpClientModule,
@@ -44,7 +50,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     LoginComponent,
     AuthmbService
   ],
-  entryComponents: [InfoComponent, DetailComponent],
+  entryComponents: [InfoComponent, DetailComponent, InfoextraComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

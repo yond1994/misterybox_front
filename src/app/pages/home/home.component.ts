@@ -4,6 +4,7 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {InfoComponent} from '../../components/info/info.component';
 import {DetailComponent} from '../../components/detail/detail.component';
 import {LoginComponent} from '../../auth/pages/login/login.component';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -30,13 +31,16 @@ export class HomeComponent implements OnInit {
   source = timer(0, 1000);
   clock: any;
   bsModalRef: BsModalRef;
-  constructor( private modalService: BsModalService) { }
+  awardstrue: any = true;
+  idparams: any;
+  constructor( private modalService: BsModalService,  private route: ActivatedRoute, private router: Router ) { }
 
   ngOnInit(): void {
-
+    this.idparams = this.route.snapshot.paramMap.get('id');
+    console.log(this.idparams);
     this.clock = this.source.subscribe(t => {
       this.now = new Date();
-      this.end = new Date('06/20/' + (this.now.getFullYear()) +' 00:00');
+      this.end = new Date('06/20/' + (this.now.getFullYear()) + ' 00:00');
       this.showDate();
     });
   }
@@ -69,9 +73,10 @@ export class HomeComponent implements OnInit {
     this.bsModalRef.content.closeBtnName = 'Close';
   }
 
-  opendetail() {
+  opendetail(id) {
     const initialState = {
-      title: 'Presentamos 🔥Racks Members🔥'
+      title: 'Presentamos 🔥Racks Members🔥',
+      id: id
     };
     this.bsModalRef = this.modalService.show(DetailComponent, {initialState, class: 'modal-lg'});
     this.bsModalRef.content.closeBtnName = 'Close';

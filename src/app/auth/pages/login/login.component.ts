@@ -38,10 +38,8 @@ export class LoginComponent implements OnInit {
       event.preventDefault();
       this.auth.login(this.form.value.email, this.form.value.password).then((loged) => {
         if (loged) {
-           if (this.userdata.role === 'admin') {
-             this.router.navigateByUrl('/users');
-           }
-           this.bsModalRef.hide();
+          this.router.navigateByUrl('/users');
+          this.bsModalRef.hide();
           // if (this.activatedRoute.snapshot['_routerState'].url === '/login') {
           //   this.router.navigateByUrl('/home');
           // }

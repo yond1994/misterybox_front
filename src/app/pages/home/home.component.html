@@ -15,11 +15,11 @@
         <div class='shadow3'></div>
         <div class="box">
 
-          <div *ngIf="state.open" class="heart-gift">
-            <img (click)="opendetail()" class="imgtapa" src="assets/img/tapasdefault.png">
+          <div *ngIf="state.open && awardstrue" class="heart-gift">
+            <img *ngIf="awardstrue" (click)="opendetail('5ede8dcc141c2c542826f8e9')" class="imgtapa" src="assets/img/tapasdefault.png">
           </div>
           <!--<i *ngIf="!state.open" class="fa fa-heart heart-gift"></i>-->
-          <div class="{{state.open    ? 'lid open': state.wasOpen ? 'lid close': 'lid' }} cursor" (click)="toggleBox()">
+          <div class="{{state.open && awardstrue ? 'lid open': state.wasOpen ? 'lid close': 'lid' }} cursor" (click)="toggleBox()">
             <div class="qmark">
               <!--{{state.open? '!' : '?' }}-->
             </div>
