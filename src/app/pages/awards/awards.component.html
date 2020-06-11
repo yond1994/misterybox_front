@@ -10,7 +10,14 @@
   </div>
 
   <div class="my-3 p-3 bg-white rounded box-shadow">
-    <h6 class="border-bottom border-gray pb-2 mb-0">Lista de productos</h6>
+    <div class="border-bottom border-gray pb-2 mb-0 row">
+      <div class="col-6">
+        <h6 class="">Lista de productos </h6>
+      </div>
+      <div class="col-6">
+        <button  (click)="createawards()" type="submit" class="btn btn-primary float-right">Nuevo producto</button>
+      </div>
+    </div>
     <div class="media text-muted pt-3" *ngFor="let item of list; index as i;">
       <div class="col-11 media">
         <img *ngIf="item?.custom_data?.imgprimary" data-src="" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src="{{item?.custom_data?.imgprimary}}" data-holder-rendered="true">

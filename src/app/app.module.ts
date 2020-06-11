@@ -20,6 +20,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AwardsComponent } from './pages/awards/awards.component';
 import { HeaderComponent } from './components/header/header.component';
 import { InfoextraComponent } from './components/infoextra/infoextra.component';
+import { CreateproductComponent } from './components/createproduct/createproduct.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { InfoextraComponent } from './components/infoextra/infoextra.component';
     LoginComponent,
     AwardsComponent,
     HeaderComponent,
-    InfoextraComponent
+    InfoextraComponent,
+    CreateproductComponent
   ],
   imports: [
     LoadingBarHttpClientModule,
@@ -50,7 +52,7 @@ import { InfoextraComponent } from './components/infoextra/infoextra.component';
     LoginComponent,
     AuthmbService
   ],
-  entryComponents: [InfoComponent, DetailComponent, InfoextraComponent],
+  entryComponents: [InfoComponent, DetailComponent, InfoextraComponent, CreateproductComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

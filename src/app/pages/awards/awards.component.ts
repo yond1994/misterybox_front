@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../services/api.service';
 import {UtilsService} from '../../services/utils.service';
 import Swal from "sweetalert2";
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {InfoextraComponent} from '../../components/infoextra/infoextra.component';
+import {CreateproductComponent} from '../../components/createproduct/createproduct.component';
 
 @Component({
   selector: 'app-awards',
@@ -17,7 +20,13 @@ export class AwardsComponent implements OnInit {
   page: any =  1;
   order: any =  -1;
   totalPages: any;
-  constructor(private rest: ApiService,  private utils: UtilsService) { }
+  bsModalRef: BsModalRef;
+  constructor(private rest: ApiService,  private utils: UtilsService,   private modalService: BsModalService) {
+
+    this.rest.change.subscribe(isOpen => {
+      this.ngOnInit();
+    });
+  }
 
   ngOnInit(): void {
     const params = {
@@ -48,8 +57,8 @@ export class AwardsComponent implements OnInit {
   }
   delete(id) {
     Swal.fire({
-      title: 'Deseas cerrar session?',
-      text: 'Si le das si, cerraras la session',
+      title: 'Deseas eliminar este articulo?',
+      text: 'Si le das si, eliminaras por completo el articulo',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -67,11 +76,18 @@ export class AwardsComponent implements OnInit {
         });
         Swal.fire(
           'Desloguiado!',
-          'te desloguiaste correctamente',
+          'Se elimino correctamente',
           'success'
         );
       }
     });
+  }
+  createawards() {
+    const initialState = {
+      title: 'Detalle de pedido',
+    };
+    this.bsModalRef = this.modalService.show(CreateproductComponent, {initialState, class: 'modal-lg'});
+    this.bsModalRef.content.closeBtnName = 'Close';
   }
 
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {Router} from '@angular/router';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { environment } from '../../environments/environment';
@@ -7,18 +7,33 @@ import { environment } from '../../environments/environment';
 })
 export class ApiService {
   public headers: HttpHeaders;
+  public headersimg: HttpHeaders;
   public readonly url: string = environment.apiurl;
   constructor(public http: HttpClient, private router: Router) {
     this.headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     });
+    this.headersimg = new HttpHeaders({
+      'Accept': 'application/json',
+    });
+  }
+  isOpen = false;
+  @Output() change: EventEmitter<boolean> = new EventEmitter();
+
+  toggle() {
+    this.isOpen = !this.isOpen;
+    this.change.emit(this.isOpen);
   }
   get(endpoint: string, params?: IUrlParams): Promise<object> {
     return this.check(this.http.get(this.getUrl(endpoint, params), {headers: this.headers}).toPromise());
   }
   post(endpoint: string, body: object, params?: IUrlParams): Promise<object> {
     return this.check(this.http.post(this.getUrl(endpoint, params), body, {headers: this.headers}).toPromise());
+  }
+
+  postimg(endpoint: string, body: object, params?: IUrlParams): Promise<object> {
+    return this.check(this.http.post(this.getUrl(endpoint, params), body, {headers: this.headersimg}).toPromise());
   }
 
   put(endpoint: string, body: object, params?: IUrlParams): Promise<object> {

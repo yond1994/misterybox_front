@@ -1,0 +1,49 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">{{title}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form" (submit)="save($event)" class="form-signin">
+    <div class="form-label-group">
+      <label >Nombre </label>
+      <input formControlName="name" type="text" class="form-control" placeholder="Nombre" required autofocus>
+    </div>
+    <div class="form-label-group">
+      <label >Cantidad </label>
+      <input formControlName="count" type="text" class="form-control" placeholder="Cantidad" required autofocus>
+    </div>
+    <div class="form-label-group">
+      <label >Identificación </label>
+      <input formControlName="identification" type="text" class="form-control" placeholder="Identificación" required autofocus>
+    </div>
+    <div class="form-label-group">
+      <label >Precio </label>
+      <input formControlName="price" type="text" class="form-control" placeholder="Precio" required autofocus>
+    </div>
+    <div class="form-label-group">
+      <label >Descripcion </label>
+      <textarea formControlName="description" type="text"  class="form-control">
+      </textarea>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-label-group">
+          <label >Cargar imagen 1 </label>
+          <input formControlName="img1" name="file" type="file"  (change)="fileChange($event, 1)" class="form-control">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-label-group">
+          <label >Cargar imagen 2 </label>
+          <input formControlName="img2"  name="file" type="file"  (change)="fileChange($event, 2)"  class="form-control">
+        </div>
+      </div>
+
+    </div>
+
+    <br/>
+    <button [disabled]="!form.valid" class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registrar</button>
+  </form>
+</div>
