@@ -19,16 +19,18 @@
       </div>
     </div>
     <div class="media text-muted pt-3" *ngFor="let item of list; index as i;">
-      <div class="col-11 media">
+      <div class="col-10 media">
         <img *ngIf="item?.custom_data?.imgprimary" data-src="" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src="{{item?.custom_data?.imgprimary}}" data-holder-rendered="true">
         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
           <strong class="d-block text-gray-dark"><span>{{item.identification == 'comun' ? '🎁' : '💎' }}</span>{{item.name}} </strong>
           {{item.description}}
         </p>
       </div>
-      <div class="col-1">
-        <span class="text-center"><i (click)="delete(item._id)" class="fa fa-trash cursor"></i>
-          <!--<i class="fa fa-edit cursor"></i>-->
+      <div class="col-2 inline-grid">
+        <span class="text-center">
+          <i (click)="delete(item._id)" class="fa fa-trash cursor paddin5"></i>
+          <i (click)="edit(item._id)" class="fa fa-edit cursor paddin5"></i>
+          <i (click)="opendetail(item?._id)" class="fa fa-dropbox cursor paddin5"></i>
         </span>
       </div>
     </div>

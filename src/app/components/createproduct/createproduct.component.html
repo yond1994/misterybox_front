@@ -8,34 +8,40 @@
   <form [formGroup]="form" (submit)="save($event)" class="form-signin">
     <div class="form-label-group">
       <label >Nombre </label>
-      <input formControlName="name" type="text" class="form-control" placeholder="Nombre" required autofocus>
+      <input formControlName="name" [(ngModel)]="data.name" type="text" class="form-control" placeholder="Nombre" required autofocus>
     </div>
     <div class="form-label-group">
       <label >Cantidad </label>
-      <input formControlName="count" type="text" class="form-control" placeholder="Cantidad" required autofocus>
+      <input formControlName="count" [(ngModel)]="data.count" type="text" class="form-control" placeholder="Cantidad" required autofocus>
     </div>
     <div class="form-label-group">
       <label >Identificación </label>
-      <input formControlName="identification" type="text" class="form-control" placeholder="Identificación" required autofocus>
+      <select class="form-control" formControlName="identification" [(ngModel)]="data.identification">
+        <option value="comun">Comun</option>
+        <option value="unique">Unico</option>
+      </select>
+      <!--<input formControlName="identification" [(ngModel)]="data.identification" type="text" class="form-control" placeholder="Identificación" required autofocus>-->
     </div>
     <div class="form-label-group">
       <label >Precio </label>
-      <input formControlName="price" type="text" class="form-control" placeholder="Precio" required autofocus>
+      <input formControlName="price" [(ngModel)]="data.price"  type="text" class="form-control" placeholder="Precio" required autofocus>
     </div>
     <div class="form-label-group">
       <label >Descripcion </label>
-      <textarea formControlName="description" type="text"  class="form-control">
+      <textarea formControlName="description" [(ngModel)]="data.description" type="text"  class="form-control">
       </textarea>
     </div>
     <div class="row">
       <div class="col-sm-6">
         <div class="form-label-group">
+          <img *ngIf="data?.custom_data?.imgprimary" class="imgedit" src="{{data.custom_data.imgprimary}}">
           <label >Cargar imagen 1 </label>
           <input formControlName="img1" name="file" type="file"  (change)="fileChange($event, 1)" class="form-control">
         </div>
       </div>
       <div class="col-sm-6">
         <div class="form-label-group">
+          <img *ngIf="data?.custom_data?.imgsecundary" class="imgedit" src="{{data.custom_data.imgsecundary}}">
           <label >Cargar imagen 2 </label>
           <input formControlName="img2"  name="file" type="file"  (change)="fileChange($event, 2)"  class="form-control">
         </div>

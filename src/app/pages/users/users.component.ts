@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from '../../services/api.service';
 import {UtilsService} from '../../services/utils.service';
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 import {DetailComponent} from '../../components/detail/detail.component';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {InfoComponent} from '../../components/info/info.component';
 import {InfoextraComponent} from '../../components/infoextra/infoextra.component';
+import {ProcessusersComponent} from '../../components/processusers/processusers.component';
+import {forEachComment} from 'tslint';
 
 @Component({
   selector: 'app-users',
@@ -13,7 +15,7 @@ import {InfoextraComponent} from '../../components/infoextra/infoextra.component
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
-  list: any;
+  list: any = [];
   countpage: any;
   hasNextPage: any;
   hasPrevPage: any;
@@ -23,6 +25,9 @@ export class UsersComponent implements OnInit {
   totalPages: any;
   displaymenu: any = false;
   bsModalRef: BsModalRef;
+  sorteo: any = false;
+  users: any = [];
+  imgview: any = false;
   constructor(private rest: ApiService,  private utils: UtilsService,  private modalService: BsModalService) { }
 
   ngOnInit(): void {
@@ -64,7 +69,9 @@ export class UsersComponent implements OnInit {
       this.utils.openSnackBar('Algo salio mal', 'error');
     });
   }
+
   random() {
+
     Swal.fire({
       title: 'Deseas ejecutar el sorteo?',
       text: 'Si le das si, Ejecutaras el sorteo',
@@ -75,14 +82,18 @@ export class UsersComponent implements OnInit {
       confirmButtonText: 'Si, ejecutar!'
     }).then((result) => {
       if (result.value) {
+        this.sorteo = true;
+        setTimeout(() => {
+          Swal.fire(
+            'Se asignaron todos lo premios!',
+            'Todo se asigno correctamente',
+            'success'
+          );
+          this.sorteo = false;
+        }, 10000);
         this.rest.get('/clients/random').then((res: any) => {
           if (res) {
             this.ngOnInit();
-            Swal.fire(
-              'Se asignaron todos lo premios!',
-              'Todo se asigno correctamente',
-              'success'
-            );
             // this.utils.openSnackBar('Se asignaron  los premios con exito', 'success');
           }
         }).catch((error: any) => {
@@ -110,5 +121,11 @@ export class UsersComponent implements OnInit {
     this.bsModalRef = this.modalService.show(InfoextraComponent, {initialState, class: 'modal-lg'});
     this.bsModalRef.content.closeBtnName = 'Close';
   }
-
+  viewpremio() {
+    if ( !this.imgview ) {
+      this.imgview = true;
+    } else  {
+      this.imgview = false;
+    }
+  }
 }

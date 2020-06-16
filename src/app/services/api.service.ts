@@ -37,7 +37,7 @@ export class ApiService {
   }
 
   put(endpoint: string, body: object, params?: IUrlParams): Promise<object> {
-    return this.check(this.http.put(this.getUrl(endpoint, params), body, {headers: this.headers}).toPromise());
+    return this.check(this.http.patch(this.getUrl(endpoint, params), body, {headers: this.headers}).toPromise());
   }
 
   delete(endpoint: string, params?: IUrlParams): Promise<object> {

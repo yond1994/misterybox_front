@@ -19,6 +19,8 @@ export class CreateproductComponent implements OnInit {
   public form: any = FormGroup;
   img1: any;
   img2: any;
+  data: any = [];
+  id: any;
   constructor(public bsModalRef: BsModalRef, private fb: FormBuilder,  private rest: ApiService,  private utils: UtilsService,
               public http: HttpClient, private router: Router) {
     this.form = fb.group({
@@ -35,7 +37,16 @@ export class CreateproductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    if (this.id) {
+      this.rest.get('/products/' + this.id).then((res: any) => {
+        console.log(res);
+        this.img2 = res.custom_data.imgsecundary;
+        this.img1 = res.custom_data.imgprimary;
+        this.data = res;
+      }).catch(error => {
+        console.log(error);
+      });
+    }
   }
   save(event?) {
     if (event) {
@@ -43,20 +54,35 @@ export class CreateproductComponent implements OnInit {
       console.log(this.form.value);
       this.form.value.custom_data  = {
         imgprimary: this.img1,
-        imgsecundary : this.img2
+        imgsecundary: this.img2,
       };
-      this.rest.post('/products', this.form.value).then((res: any) => {
-          this.utils.openSnackBar('Login Fail', 'success');
+      if (this.id) {
+        this.rest.put('/products/' + this.id, this.form.value).then((res: any) => {
+          this.utils.openSnackBar('Editado con exito', 'success');
           this.rest.toggle();
           this.bsModalRef.hide();
           // if (this.activatedRoute.snapshot['_routerState'].url === '/login') {
           //   this.router.navigateByUrl('/home');
           // }
-      }).catch((error) => {
-        if (error) {
-          this.utils.openSnackBar('Login Fail' , 'try again');
-        }
-      });
+        }).catch((error) => {
+          if (error) {
+            this.utils.openSnackBar('error' , 'try again');
+          }
+        });
+      } else  {
+        this.rest.post('/products', this.form.value).then((res: any) => {
+          this.utils.openSnackBar('Registrado con exito', 'success');
+          this.rest.toggle();
+          this.bsModalRef.hide();
+          // if (this.activatedRoute.snapshot['_routerState'].url === '/login') {
+          //   this.router.navigateByUrl('/home');
+          // }
+        }).catch((error) => {
+          if (error) {
+            this.utils.openSnackBar('Login Fail' , 'try again');
+          }
+        });
+      }
     }
   }
 

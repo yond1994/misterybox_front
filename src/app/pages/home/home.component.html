@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12 text-center">
-      <h2 class="top-add-5 titleone"><span style="color: white">WILL OPEN SATURDAY 06/20 AT 5PM</span>
+      <h2 class="top-add-5 titleone"><span style="color: white">WILL OPEN WEDNESDAY 30/06 AT 10PM</span>
         {{day}}:{{hours}}:{{minutes}}:{{seconds}} WAIT TIME</h2>
     </div>
     <div class="col-12 text-center">
@@ -16,7 +16,7 @@
         <div class="box">
 
           <div *ngIf="state.open && awardstrue" class="heart-gift">
-            <img *ngIf="awardstrue" (click)="opendetail('5ede8dcc141c2c542826f8e9')" class="imgtapa" src="assets/img/tapasdefault.png">
+            <img *ngIf="awardstrue" (click)="opendetail()" class="imgtapa cursor" [src]="imgaward">
           </div>
           <!--<i *ngIf="!state.open" class="fa fa-heart heart-gift"></i>-->
           <div class="{{state.open && awardstrue ? 'lid open': state.wasOpen ? 'lid close': 'lid' }} cursor" (click)="toggleBox()">
@@ -56,8 +56,9 @@
           </div>
           <div class="col-md-4 col-xs-12 no-movil">
             <p style="float: right">
-              Exclusive product for rack members <br>
-              INFECTED DROP #6 <a (click)="login()">Login</a></p>
+              Exclusive product for RACKS MEMBERS <br>
+              BOX {{codebox ? '#' + codebox : '--' }}  {{datauser.name ? '/' + datauser.name  : ''}} </p>
+
           </div>
         </div>
       </div>

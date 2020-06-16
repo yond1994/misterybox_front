@@ -15,6 +15,13 @@ const routes: Routes = [
       heading: 'Orden'
     }
   },
+  {
+    path: 'login',
+    component: HomeComponent,
+    data: {
+      heading: 'Orden'
+    }
+  },
 
   {path: 'users', component: UsersComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'awards', component: AwardsComponent, pathMatch: 'full', canActivate: [AuthGuard]},

@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {InfoextraComponent} from '../../components/infoextra/infoextra.component';
 import {CreateproductComponent} from '../../components/createproduct/createproduct.component';
+import {DetailComponent} from '../../components/detail/detail.component';
 
 @Component({
   selector: 'app-awards',
@@ -87,6 +88,22 @@ export class AwardsComponent implements OnInit {
       title: 'Detalle de pedido',
     };
     this.bsModalRef = this.modalService.show(CreateproductComponent, {initialState, class: 'modal-lg'});
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
+  edit(id) {
+    const initialState = {
+      title: 'Editar de prpducto',
+      id: id
+    };
+    this.bsModalRef = this.modalService.show(CreateproductComponent, {initialState, class: 'modal-lg'});
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
+  opendetail(id) {
+    const initialState = {
+      title: 'Presentamos 🔥Racks Members🔥',
+      id: id
+    };
+    this.bsModalRef = this.modalService.show(DetailComponent, {initialState, class: 'modal-lg'});
     this.bsModalRef.content.closeBtnName = 'Close';
   }
 

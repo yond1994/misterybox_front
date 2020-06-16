@@ -1,7 +1,8 @@
+<app-header [ngClass]="{'displaynone': sorteo, 'displayblock': !sorteo}" ></app-header>
 
-<app-header></app-header>
 
-<main role="main" class="container">
+<app-processusers  *ngIf="sorteo" [ngClass]="{'displaynone': !sorteo}"></app-processusers>
+<main [ngClass]="{'displaynone': sorteo, 'displayblock': !sorteo}" role="main" class="container">
   <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded box-shadow">
     <div class="lh-100">
       <h6 class="mb-0 text-white lh-100">Lista de premios</h6>
@@ -12,7 +13,9 @@
   <div class="my-3 p-3 bg-white rounded box-shadow">
     <div class="border-bottom border-gray pb-2 mb-0 row">
       <div class="col-6">  <h6 class="">Participantes </h6></div>
-      <div class="col-6">   <i (click)="refreshuser()" class="fa fa-refresh float-right paddin10 cursor"></i>
+      <div class="col-6">
+        <i  *ngIf="list.length > 0"  (click)="viewpremio()" title="ver premios" class="float-right paddin10 cursor fa" [ngClass]="{'fa-eye': !imgview, 'fa-eye-slash': imgview}" ></i>
+        <i (click)="refreshuser()" class="fa fa-refresh float-right paddin10 cursor"></i>
         <button *ngIf="list.length > 0" (click)="random()" type="submit" class="btn btn-primary float-right">Asignar Premios </button>
       </div>
     </div>
@@ -21,8 +24,8 @@
       <h1 class="paddin10">NO SE REGISTRARON USUARIOS</h1>
     </div>
     <div class="media text-muted pt-3" *ngFor="let item of list; index as i;">
-      <div class="col-11  media">
-        <img *ngIf="item?.box" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src="{{item.box?.custom_data?.imgprimary}}" data-holder-rendered="true">
+      <div class="col-10  media">
+        <img *ngIf="item?.box && imgview" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src="{{item.box?.custom_data?.imgprimary}}" data-holder-rendered="true">
         <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
           <strong class="d-block text-gray-dark">  {{item.name}}</strong>
           ({{item.idoriginal}})
@@ -30,10 +33,11 @@
           <!--{{item.email}}-->
         </p>
       </div>
-      <div class="col-1 ">
+      <div class="col-2 inline-grid">
         <span class="text-center">
           <i *ngIf="item.box" (click)="opendetail(item?.box?._id)" class="fa fa-dropbox cursor paddin5"></i>
           <i (click)="detailinfo(item._id, item.custom_data)" class="fa fa-address-card-o cursor paddin5" aria-hidden="true"></i>
+          <a *ngIf="item.box" href="order/{{item.idoriginal}}" target="_blank"><i class="fa fa-archive" aria-hidden="true"></i></a>
           <!--<i class="fa fa-edit cursor"></i>-->
         </span>
       </div>
@@ -55,4 +59,5 @@
     </small>
   </div>
 </main>
+
 

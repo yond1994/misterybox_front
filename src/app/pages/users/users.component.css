@@ -4,10 +4,27 @@
 .paddin5 {
   padding: 5px;
 }
-
+.displaynone {
+  display: none;
+}
+.displayblock {
+  display: block;
+}
+.inline-grid {
+  display: inline-grid;
+}
 
 @media screen and (max-width: 600px) {
   .paddin5 {
     padding: 0px!important;
   }
+}
+
+
+.sorteo {
+  width: 100%;
+  height: 100%;
+  background-color: #454545;
+  position: absolute;
+  z-index: 9999;
 }

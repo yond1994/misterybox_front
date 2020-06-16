@@ -5,6 +5,9 @@ import {InfoComponent} from '../../components/info/info.component';
 import {DetailComponent} from '../../components/detail/detail.component';
 import {LoginComponent} from '../../auth/pages/login/login.component';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ApiService} from '../../services/api.service';
+import {UtilsService} from '../../services/utils.service';
+import {CreateproductComponent} from '../../components/createproduct/createproduct.component';
 
 @Component({
   selector: 'app-home',
@@ -31,26 +34,64 @@ export class HomeComponent implements OnInit {
   source = timer(0, 1000);
   clock: any;
   bsModalRef: BsModalRef;
-  awardstrue: any = true;
+  awardstrue: any = false;
   idparams: any;
-  constructor( private modalService: BsModalService,  private route: ActivatedRoute, private router: Router ) { }
+  codebox: any;
+  datauser: any = [];
+  imgaward: any = false;
+  resrefresh: any = false;
+  constructor( private modalService: BsModalService,  private route: ActivatedRoute,
+               private router: Router, private rest: ApiService, private utils: UtilsService, ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.idparams = this.route.snapshot.paramMap.get('id');
-    console.log(this.idparams);
+    if (this.router.url === '/login') {
+      this.login();
+    }
+    if (this.idparams)  {
+        console.log(this.idparams);
+        this.refreshuser().then((data) => {
+          console.log('llegue aqui', data);
+          this.resrefresh = true;
+          this.extractuser(false);
+        }).catch((error) => {
+          console.log(error);
+        });
+
+    }
     this.clock = this.source.subscribe(t => {
       this.now = new Date();
-      this.end = new Date('06/20/' + (this.now.getFullYear()) + ' 00:00');
+      this.end = new Date('06/30/' + (this.now.getFullYear()) + ' 22:00');
       this.showDate();
     });
   }
   toggleBox(){
-    if (this.state.open === false) {
-      this.state.open = true;
+    if (this.awardstrue === false) {
+      this.extractuser(true);
     } else {
-      this.state.open = false;
+      if (this.state.open === false) {
+        this.state.open = true;
+      } else {
+        this.state.open = false;
+      }
     }
+
     // return { type: this.TOGGLE_BOX };
+  }
+  async extractuser(open) {
+    if ( this.resrefresh) {
+      await this.rest.get('/clients/client/' + this.idparams).then(res => {
+        this.datauser = res;
+        this.codebox = this.datauser.idoriginal ? this.datauser.idoriginal :  null;
+        this.imgaward = this.datauser?.box?.custom_data?.imgprimary ? this.datauser?.box?.custom_data?.imgprimary :  null;
+        this.awardstrue = this.datauser.box ? true : false;
+        if (open) {
+          this.state.open = true;
+        }
+      }).catch(error => {
+        this.utils.openSnackBar('No se encontro tu registro de compra', 'error', 5000);
+      });
+    }
   }
   showDate(){
     let distance = this.end - this.now;
@@ -69,14 +110,14 @@ export class HomeComponent implements OnInit {
       ],
       title: 'Presentamos 🔥Racks Members🔥'
     };
-    this.bsModalRef = this.modalService.show(InfoComponent, {initialState});
+    this.bsModalRef = this.modalService.show(InfoComponent, {initialState, class: 'modal-lg'});
     this.bsModalRef.content.closeBtnName = 'Close';
   }
 
-  opendetail(id) {
+  opendetail() {
     const initialState = {
       title: 'Presentamos 🔥Racks Members🔥',
-      id: id
+      id: this.datauser.box._id
     };
     this.bsModalRef = this.modalService.show(DetailComponent, {initialState, class: 'modal-lg'});
     this.bsModalRef.content.closeBtnName = 'Close';
@@ -89,4 +130,14 @@ export class HomeComponent implements OnInit {
     this.bsModalRef.content.closeBtnName = 'Close';
   }
 
+  refreshuser() {
+    return new Promise((resolve, reject) => {
+      this.rest.get('/clients/refeshusers').then((res: any) => {
+        resolve(true);
+      }).catch((error: any) => {
+        this.utils.openSnackBar('Algo salio mal', 'error');
+        resolve(false);
+      });
+    });
+  }
 }

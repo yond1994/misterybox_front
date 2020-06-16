@@ -21,6 +21,7 @@ import { AwardsComponent } from './pages/awards/awards.component';
 import { HeaderComponent } from './components/header/header.component';
 import { InfoextraComponent } from './components/infoextra/infoextra.component';
 import { CreateproductComponent } from './components/createproduct/createproduct.component';
+import { ProcessusersComponent } from './components/processusers/processusers.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CreateproductComponent } from './components/createproduct/createproduct
     AwardsComponent,
     HeaderComponent,
     InfoextraComponent,
-    CreateproductComponent
+    CreateproductComponent,
+    ProcessusersComponent
   ],
   imports: [
     LoadingBarHttpClientModule,
@@ -52,7 +54,7 @@ import { CreateproductComponent } from './components/createproduct/createproduct
     LoginComponent,
     AuthmbService
   ],
-  entryComponents: [InfoComponent, DetailComponent, InfoextraComponent, CreateproductComponent],
+  entryComponents: [InfoComponent, DetailComponent, InfoextraComponent, CreateproductComponent, ProcessusersComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
