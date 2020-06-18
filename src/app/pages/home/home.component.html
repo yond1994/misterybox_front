@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col-12 text-center">
-      <h2 class="top-add-5 titleone"><span style="color: white">WILL OPEN WEDNESDAY 30/06 AT 10PM</span>
+      <h2 class="top-add-5 titleone"><span style="color: white">OPENING ON WEDNESDAY 30/06 AT 10PM</span>
         {{day}}:{{hours}}:{{minutes}}:{{seconds}} WAIT TIME</h2>
     </div>
     <div class="col-12 text-center">
-      <h1 class="texto-borde">THE MYSTERYBOX <br> OF RACKS.</h1>
+      <h1 class="texto-borde">RACKS <br>MEMBERS <br>  MYSTERYBOX</h1>
       <div class="floor">
         <div class='shadow'>
           <!--<h1 class="texto-borde">THE MYSTERYBOX OF RACKS.</h1>-->
@@ -42,20 +42,19 @@
     <div class="footer">
       <div class="container">
         <div class="row">
-          <div class=" col-6 col-md-3">
-            <h3 class="no-movil" style="float: right;  font-weight: bold;">
-              MISTERYBOX <br>
-              OF THE RACKS
-            </h3>
+          <div class="col-6 col-md-3">
+            <img class="imgmembers" src="assets/img/memberslogo.svg">
+            <!--<h3 class="no-movil" style="float: right;  font-weight: bold;">-->
+            <!--</h3>-->
           </div>
-          <div class=" col-6 col-md-3">
-            <p (click)="openmodal()" class="cursor whats"  style="margin-top: 40px;  font-weight: bold;">WHAT IS THIS?</p>
-          </div>
-          <div class="col-md-2 col-xs-12 no-movil">
+          <div class=" col-6 col-md-2 no-movil">
 
           </div>
-          <div class="col-md-4 col-xs-12 no-movil">
-            <p style="float: right">
+          <div class="col-6 col-md-3 centeralto">
+            <div (click)="openmodal()" class="cursor whats whathis">🚀 WHAT IS THIS? 🚀</div>
+          </div>
+          <div class="col-md-4 col-12 ">
+            <p class="float-rightnoresp">
               Exclusive product for RACKS MEMBERS <br>
               BOX {{codebox ? '#' + codebox : '--' }}  {{datauser.name ? '/' + datauser.name  : ''}} </p>
 

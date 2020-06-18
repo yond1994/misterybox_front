@@ -140,6 +140,7 @@
     rotateX(45deg) rotateZ(45deg);
   transform-style: preserve-3d;
   perspective: 1200px;
+  margin-left: 0rem;
 }
 
 /*  box container and parts */
@@ -316,6 +317,8 @@
   position: absolute;
   margin-top: 2rem;
   line-height: 133px;
+  text-align: center;
+  width: 100%;
 }
 .top-add-5 {
   margin-top: 3rem;
@@ -334,10 +337,48 @@
 .cursor {
   cursor: pointer;
 }
+.imgmembers {
+  float: right;
+  font-weight: bold;
+  margin-top: -3.8rem;
+}
+.whathis {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+.float-rightnoresp {
+  float: right;
+}
 @media screen and (max-width: 600px) {
+  .float-rightnoresp {
+    text-align: center;
+    float: initial;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .imgmembers {
+    float: left;
+    margin-top: 0rem;
+  }
+  .whathis {
+    margin-top: 0px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    margin-top: 1.3rem;
+  }
+  .centeralto {
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+  }
   .floor {
     height: 10em;
     width: 10em;
+    margin-left: 0rem;
     margin-top: 48%;
   }
   .no-movil {
@@ -365,7 +406,7 @@
   }
   .footer {
     display: block;
-    height: 5rem;
+    height: 8rem;
   }
   .whats {
     float: right;
