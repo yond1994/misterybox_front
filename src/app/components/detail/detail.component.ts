@@ -10,6 +10,7 @@ import {UtilsService} from '../../services/utils.service';
 export class DetailComponent implements OnInit {
   id: any;
   data: any = [];
+  tallas: any;
   constructor(private rest: ApiService,  private utils: UtilsService) { }
 
   ngOnInit(): void {

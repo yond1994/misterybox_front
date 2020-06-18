@@ -103,10 +103,11 @@ export class UsersComponent implements OnInit {
       }
     });
   }
-  opendetail(id) {
+  opendetail(id, tallas = null) {
     const initialState = {
       title: 'Presentamos 🔥Racks Members🔥',
-      id: id
+      id: id,
+      tallas : tallas ? tallas : null
     };
     this.bsModalRef = this.modalService.show(DetailComponent, {initialState, class: 'modal-lg'});
     this.bsModalRef.content.closeBtnName = 'Close';
