@@ -1,0 +1,13 @@
+.modal-body {
+  text-align: justify!important;
+  font-size: 14px;
+}
+@media screen and (max-width: 600px) {
+  .modal-body {
+    text-align: justify!important;
+    font-size: 12px;
+  }
+  ul {
+    padding-inline-start: 20px;
+  }
+}

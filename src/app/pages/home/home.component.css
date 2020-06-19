@@ -350,6 +350,13 @@
 .float-rightnoresp {
   float: right;
 }
+.buttonracks {
+  border-radius: 7px;
+  border: solid 0px;
+  padding: 5px;
+  background-color: #454545;
+  color: #fff;
+}
 @media screen and (max-width: 600px) {
   .float-rightnoresp {
     text-align: center;
@@ -406,7 +413,7 @@
   }
   .footer {
     display: block;
-    height: 8rem;
+    height: 8.5rem;
   }
   .whats {
     float: right;
