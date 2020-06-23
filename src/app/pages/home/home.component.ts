@@ -49,7 +49,11 @@ export class HomeComponent implements OnInit {
       this.login();
     }
     if (this.idparams)  {
-        console.log(this.idparams);
+        if (this.idparams.length > 4) {
+          const idp = this.idparams;
+          const id = idp.substr(1);
+          this.idparams = id;
+        }
         this.refreshuser().then((data) => {
           console.log('llegue aqui', data);
           this.resrefresh = true;
