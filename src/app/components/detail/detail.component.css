@@ -230,13 +230,17 @@ ul li {
 
 .product-info {
   position: absolute;
-  margin-left: 45%;
+  margin-left: 43%;
   height: 394px;
   width: 290px;
   z-index: 10;
 }
 .w-image {
   width: 100%!important;
+}
+.details {
+  width: 81%!important;
+  padding-right: 15px;
 }
 @media screen and (max-width: 600px) {
   .left {
@@ -255,10 +259,10 @@ ul li {
     height: auto!important;
     width: 100%;
     z-index: 10;
-    margin-top: 80%;
+    margin-top: 70%;
   }
   .product-name {
-    display: none;
+    padding-right: 30px;
   }
   .card {
     height: 465px;
@@ -268,5 +272,11 @@ ul li {
   }
   .details {
     width: 81%!important;
+    padding-right: 15px;
+    font-size: 15px!important;
+  }
+  h3 {
+    margin-top: 0px;
+    font-size: 15px;
   }
 }
