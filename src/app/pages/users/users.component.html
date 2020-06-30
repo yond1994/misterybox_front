@@ -37,7 +37,7 @@
         <span class="text-center">
           <i *ngIf="item.box" (click)="opendetail(item?.box?._id, item.tallas)" class="fa fa-dropbox cursor paddin5"></i>
           <i (click)="detailinfo(item._id, item.custom_data)" class="fa fa-address-card-o cursor paddin5" aria-hidden="true"></i>
-          <a *ngIf="item.box" href="order/{{item.idoriginal}}" target="_blank"><i class="fa fa-archive" aria-hidden="true"></i></a>
+          <a *ngIf="item.box" href="box/{{item.idoriginal}}" target="_blank"><i class="fa fa-archive" aria-hidden="true"></i></a>
           <!--<i class="fa fa-edit cursor"></i>-->
         </span>
       </div>

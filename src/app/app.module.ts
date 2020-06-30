@@ -22,6 +22,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { InfoextraComponent } from './components/infoextra/infoextra.component';
 import { CreateproductComponent } from './components/createproduct/createproduct.component';
 import { ProcessusersComponent } from './components/processusers/processusers.component';
+import { MisteryComponent } from './pages/mistery/mistery.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ProcessusersComponent } from './components/processusers/processusers.co
     HeaderComponent,
     InfoextraComponent,
     CreateproductComponent,
-    ProcessusersComponent
+    ProcessusersComponent,
+    MisteryComponent
   ],
   imports: [
     LoadingBarHttpClientModule,

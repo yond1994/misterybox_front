@@ -4,6 +4,7 @@ import {HomeComponent} from './pages/home/home.component';
 import {UsersComponent} from './pages/users/users.component';
 import {AuthGuard} from './auth/guards/auth.guard';
 import {AwardsComponent} from './pages/awards/awards.component';
+import {MisteryComponent} from './pages/mistery/mistery.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,13 @@ const routes: Routes = [
   {
     path: 'order/:id',
     component: HomeComponent,
+    data: {
+      heading: 'Orden'
+    }
+  },
+  {
+    path: 'box/:id',
+    component: MisteryComponent,
     data: {
       heading: 'Orden'
     }
