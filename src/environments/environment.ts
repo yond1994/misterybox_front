@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiurl: 'https://apimembers.racksnstacks.com'
+  apiurl: 'http://localhost:3000',
+  // apiurl: 'https://apimembers.racksnstacks.com'
 };
 // apiurl: 'http://localhost:3000'
 /*
