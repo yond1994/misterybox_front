@@ -12,11 +12,19 @@ export class InfoextraComponent implements OnInit {
   title: string;
   closeBtnName: string;
   list: any[] = [];
+  viewprime = true;
   constructor(public bsModalRef: BsModalRef) { }
 
   ngOnInit(): void {
     if (this.data ) {
       this.data = JSON.parse(this.data);
+    }
+  }
+  viewprimer() {
+    if ( !this.viewprime ) {
+      this.viewprime = true;
+    } else  {
+      this.viewprime = false;
     }
   }
 

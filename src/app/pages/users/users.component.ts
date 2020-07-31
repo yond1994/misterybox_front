@@ -28,6 +28,7 @@ export class UsersComponent implements OnInit {
   sorteo: any = false;
   users: any = [];
   imgview: any = false;
+  viewUser: any = true;
   constructor(private rest: ApiService,  private utils: UtilsService,  private modalService: BsModalService) { }
 
   ngOnInit(): void {
@@ -103,21 +104,23 @@ export class UsersComponent implements OnInit {
       }
     });
   }
-  opendetail(id, tallas = null) {
+  opendetail(id, tallas = null, user= null) {
     const initialState = {
       title: 'Presentamos 🔥Racks Members🔥',
       id: id,
-      tallas : tallas ? tallas : null
+      tallas : tallas ? tallas : null,
+      user : user ? user : null
     };
     this.bsModalRef = this.modalService.show(DetailComponent, {initialState, class: 'modal-lg'});
     this.bsModalRef.content.closeBtnName = 'Close';
   }
 
-  detailinfo(id, data) {
+  detailinfo(id, data, box= null) {
     const initialState = {
       title: 'Detalle de pedido',
       id: id,
-      data: data
+      data: data,
+      box: box
     };
     this.bsModalRef = this.modalService.show(InfoextraComponent, {initialState, class: 'modal-lg'});
     this.bsModalRef.content.closeBtnName = 'Close';
@@ -127,6 +130,13 @@ export class UsersComponent implements OnInit {
       this.imgview = true;
     } else  {
       this.imgview = false;
+    }
+  }
+  viewuser() {
+    if ( !this.viewUser ) {
+      this.viewUser = true;
+    } else  {
+      this.viewUser = false;
     }
   }
 }

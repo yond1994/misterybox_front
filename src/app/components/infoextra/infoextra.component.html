@@ -1,17 +1,29 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">{{title}}</h4>
+
+  <h4 class="modal-title pull-left w-100">{{title}}   <i   (click)="viewprimer()"  title="ver premios" class="float-right paddin10 cursor fa" [ngClass]="{'fa-eye': !viewprime, 'fa-eye-slash': viewprime}" ></i>
+  </h4>
+
   <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body">
+<div class="modal-body" *ngIf="viewprime">
+  <br>
+  <div *ngIf="data">
+    <div class="w-100 text-center">
+      <h1> {{data?.billingAddress?.firstName}} {{data?.billingAddress?.lastName}} </h1>
+    </div>
+
+  </div>
+</div>
+<div class="modal-body" *ngIf="!viewprime">
   <br>
   <ul *ngIf="data">
+    <li>Nombre:  {{data?.billingAddress?.firstName}}</li>
+    <li>Apellido: {{data?.billingAddress?.lastName}}  </li>
     <li >ID: {{data.id}}  </li>
     <li >N orden: {{data.orderNumber}}  </li>
     <li>Email: {{data.customerEmail}} </li>
-    <li>Nombre: {{data?.billingAddress?.firstName}} </li>
-    <li>Apellido: {{data?.billingAddress?.lastName}} </li>
     <li>Dirección 1: {{data?.billingAddress?.address1}} </li>
     <li>Dirección 2: {{data?.billingAddress?.address2}} </li>
     <li>Ciudad: {{data?.billingAddress?.city}} </li>

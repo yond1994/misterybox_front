@@ -14,8 +14,9 @@
     <div class="border-bottom border-gray pb-2 mb-0 row">
       <div class="col-6">  <h6 class="">Participantes </h6></div>
       <div class="col-6">
-        <i  *ngIf="list.length > 0"  (click)="viewpremio()" title="ver premios" class="float-right paddin10 cursor fa" [ngClass]="{'fa-eye': !imgview, 'fa-eye-slash': imgview}" ></i>
+        <i  *ngIf="list.length > 0" (click)="viewuser()"  title="ver premios" class="float-right paddin10 cursor fa" [ngClass]="{'fa-eye': !viewUser, 'fa-eye-slash': viewUser}" ></i>
         <i (click)="refreshuser()" class="fa fa-refresh float-right paddin10 cursor"></i>
+        <i (click)="viewpremio()" [ngClass]="{'disabledview': !imgview}"   class="fa fa-gift float-right paddin10 cursor"></i>
         <button *ngIf="list.length > 0" (click)="random()" type="submit" class="btn btn-primary float-right">Asignar Premios </button>
       </div>
     </div>
@@ -26,17 +27,17 @@
     <div class="media text-muted pt-3" *ngFor="let item of list; index as i;">
       <div class="col-10  media">
         <img *ngIf="item?.box && imgview" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src="{{item.box?.custom_data?.imgprimary}}" data-holder-rendered="true">
-        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-          <strong class="d-block text-gray-dark">  {{item.name}}</strong>
-          ({{item.idoriginal}})
+        <p  class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+          <strong [ngClass]="{'blurry-text': viewUser}"  class="d-block text-gray-dark">  {{item.name}}</strong>
+          <label [ngClass]="{'blurry-text': viewUser}" >({{item.idoriginal}}) </label>
           <!--{{item?.box?.name}}-->
           <!--{{item.email}}-->
         </p>
       </div>
       <div class="col-2 inline-grid">
         <span class="text-center">
-          <i *ngIf="item.box" (click)="opendetail(item?.box?._id, item.tallas)" class="fa fa-dropbox cursor paddin5"></i>
-          <i (click)="detailinfo(item._id, item.custom_data)" class="fa fa-address-card-o cursor paddin5" aria-hidden="true"></i>
+          <i *ngIf="item.box" (click)="opendetail(item?.box?._id, item.tallas, item.custom_data)" class="fa fa-dropbox cursor paddin5"></i>
+          <i (click)="detailinfo(item._id, item.custom_data, item?.box)" class="fa fa-address-card-o cursor paddin5" aria-hidden="true"></i>
           <a *ngIf="item.box" href="box/{{item.idoriginal}}" target="_blank"><i class="fa fa-archive" aria-hidden="true"></i></a>
           <!--<i class="fa fa-edit cursor"></i>-->
         </span>

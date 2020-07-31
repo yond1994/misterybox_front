@@ -13,6 +13,13 @@
 .inline-grid {
   display: inline-grid;
 }
+.blurry-text {
+  text-shadow: 0 0 15px #000000;
+  color: transparent;
+}
+.disabledview {
+  opacity: 0.5;
+}
 
 @media screen and (max-width: 600px) {
   .paddin5 {

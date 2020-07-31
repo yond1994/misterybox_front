@@ -28,8 +28,15 @@
         <!--<li class="black"></li>-->
         <!--<li class="blue"></li>-->
       <!--</ul>-->
-      <!--<span class="foot"><i class="fa fa-shopping-bag"></i>Buy Now</span>-->
-      <!--<span class="foot"><i class="fa fa-shopping-cart"></i>Add TO Cart</span>-->
+      <div class="product-name" *ngIf="this.user">
+        <h1>{{this.user.billingAddress?.firstName}} <br>{{this.user.billingAddress?.lastName}}</h1>
+        <!--<i class="fa fa-search"></i>-->
+        <!--<i class="fa fa-user"></i>-->
+        <!--<i class="fa fa-shopping-cart"></i>-->
+        <br/>
+      </div>
+      <!--<span class="foot" *ngIf="this.user"><i class="fa fa-shopping-bag"></i>{{this.user.billingAddress?.firstName}} </span>-->
+      <!--<span class="foot" *ngIf="this.user"><i class="fa fa-shopping-cart"></i>{{this.user.billingAddress?.lastName}}</span>-->
     </div>
   </div>
 </div>
