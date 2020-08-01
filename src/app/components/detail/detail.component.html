@@ -13,10 +13,10 @@
         <!--<i class="fa fa-shopping-cart"></i>-->
         <br/>
       </div>
-      <div class="details">
+      <div class="details" >
         <h3>{{data.description}}</h3>
-        <h4><span class="fa fa-eur"></span> 0 </h4>
-        <h4 class="dis"><span class="fa fa-eur"></span> {{data.price}} </h4>
+        <h4 *ngIf="!this.user"><span class="fa fa-eur"></span> 0 </h4>
+        <h4 *ngIf="!this.user" class="dis"><span class="fa fa-eur"></span> {{data.price}} </h4>
       </div>
       <!--<ul>-->
         <!--<li>SIZE</li>-->
