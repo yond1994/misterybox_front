@@ -74,13 +74,16 @@ export class UsersComponent implements OnInit {
   random() {
 
     Swal.fire({
-      title: 'Deseas ejecutar el sorteo?',
-      text: 'Si le das si, Ejecutaras el sorteo',
-      icon: 'warning',
+      imageUrl: 'assets/img/marcoscomplete.jpeg',
+      imageHeight: 200,
+      imageAlt: 'A tall image',
+      title: 'Hola yonkis del dinero, el sorteo va a comenzar!!!',
+      text: 'Os doy mi bendición, que el capital os acompañe',
+      // icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, ejecutar!'
+      confirmButtonText: 'Adelante!'
     }).then((result) => {
       if (result.value) {
         this.sorteo = true;
