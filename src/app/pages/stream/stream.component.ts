@@ -3,7 +3,7 @@ import {BsModalService} from 'ngx-bootstrap/modal';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ApiService} from '../../services/api.service';
 import {UtilsService} from '../../services/utils.service';
-
+declare var $: any;
 @Component({
   selector: 'app-stream',
   templateUrl: './stream.component.html',
@@ -17,7 +17,9 @@ export class StreamComponent implements OnInit {
   displaynone = false;
   totapercentaje: any = 0;
   constructor(private modalService: BsModalService,  private route: ActivatedRoute,
-              private router: Router, private rest: ApiService, private utils: UtilsService) { }
+              private router: Router, private rest: ApiService, private utils: UtilsService) {
+
+  }
 
   ngOnInit(): void {
 

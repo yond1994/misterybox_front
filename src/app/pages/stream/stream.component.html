@@ -1,13 +1,19 @@
 
 
 
-<div class="progress-bg">
+<div class="progress-bg mt-3">
   <div  [ngStyle]="{'width': totapercentaje + '%'}"  class="progress-bar">
     <h3 class="raised">{{amount}} €</h3>
   </div>
+  <h3 class="goal" [ngClass]="{'d-none': displaynone}"> <img class="coheteclass" src="assets/img/Cohete.svg"> <span class="metacss">1000 €</span></h3>
+</div>
 
-  <h3 class="goal" [ngClass]="{'d-none': displaynone}"> 1.000.000 €</h3>
-</div>
-<div class="text-center">
-     <h1 class="text-white" style="font-size: 4rem;">IVA {{tax}} €</h1>
-</div>
+<!--<div class=" text-center" style="top: 0">-->
+  <!--<h1 class="raised text-white" style="bottom: 0;-->
+    <!--position: absolute;-->
+    <!--margin-left: 33%;">{{amount}} € / 1.000.000 €</h1>-->
+<!--</div>-->
+
+<!--<div class="text-center">-->
+     <!--<h1 class="text-white" style="font-size: 4rem;">IVA {{tax}} €</h1>-->
+<!--</div>-->

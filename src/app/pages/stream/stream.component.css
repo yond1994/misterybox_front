@@ -1,64 +1,79 @@
 body {
   background: transparent!important;
+  font-weight: bold;
 }
 
 .progress-bg {
   margin: 0 auto;
   width: 100%;
-  height: 10rem;
+  height: 5rem;
   border-radius: 10px;
   text-align: center;
-  -moz-box-shadow:    inset 0 0 10px #ccc;
-  -webkit-box-shadow: inset 0 0 10px #ccc;
-  box-shadow:         inset 0 0 10px #ccc;
+  /*-moz-box-shadow:    inset 0 0 10px #ccc;*/
+  /*-webkit-box-shadow: inset 0 0 10px #ccc;*/
+  /*box-shadow:         inset 0 0 10px #ccc;*/
+  background-color: #2b2e33;
 }
 
 .progress-bar {
-  height: 10rem;
+  height: 5rem;
   display: block;
   border-radius: 10px;
   float: left;
 
   /* fallback */
-  background-color: #ebc200;
+  background-color: #fda200;
 
   /* Safari 4-5, Chrome 1-9 */
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ebc200), to(#ebc200));
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fda200), to(#fda200));
 
   /* Safari 5.1, Chrome 10+ */
-  background: -webkit-linear-gradient(top, #ebc200, #ebc200);
+  background: -webkit-linear-gradient(top, #fda200, #fda200);
 
   /* Firefox 3.6+ */
-  background: -moz-linear-gradient(top, #ebc200, #ebc200);
+  background: -moz-linear-gradient(top, #fda200, #fda200);
 
   /* IE 10 */
-  background: -ms-linear-gradient(top, #ebc200, #ebc200);
+  background: -ms-linear-gradient(top, #fda200, #fda200);
 
   /* Opera 11.10+ */
-  background: -o-linear-gradient(top, #ebc200, #ebc200);
+  background: -o-linear-gradient(top, #fda200, #fda200);
 }
 
 
 .progress-bg h3.goal, .progress-bg h3.raised {
-  font-family: Arial,sans-serif;
+  /*font-family: Arial,sans-serif;*/
   font-size: 4em;
   font-weight: 600;
-  line-height: 10rem;
+  line-height: 5rem;
   margin: 0;
   padding: 0;
-  text-align: center;
-  display: inline;
-}
+  /*text-align: center;*/
+  /*display: inline;*/
+  left: 0;
+  margin-left: 2rem;
+  text-align: left;
+  color: #626b74;
 
+}
+.metacss  {
+  margin-right: 2rem;
+  right: 0;
+  position: absolute;
+  color: #626b74;
+
+}
 
 .progress-bg h3.raised {
   color: #000000;
-  margin: 14px 25px 0 50px;
+  margin: 0px 25px 0 50px;
   padding: 0 25px 0 0;
+  color: #fd672b;
 }
 
 .progress-bg h3.goal {
   color: #ffffff;
+  float: left;
   text-align: center;
 }
 
@@ -131,4 +146,10 @@ body .progress-bg div {
 @keyframes progress-bar {
   from { width: 0%; }
   to { width: 50%; }
+}
+.coheteclass {
+  height: 7rem;
+  top: 0rem;
+  position: absolute;
+  margin-left: -7rem;
 }

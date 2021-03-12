@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 :root {
   --main-bg-color2: rgb(245, 245, 245);
   --main-bg-color: rgb(69, 69, 69);
@@ -26,6 +27,9 @@ body {
 }
 .cursor {
   cursor: pointer;
+}
+body {
+  font-family: 'Roboto', sans-serif;
 }
 @media screen and (max-width: 600px) {
   .no-movil {
