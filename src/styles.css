@@ -10,6 +10,12 @@ body {
   background: rgb(231,231,231);
   background: radial-gradient(circle, rgba(231,231,231,1) 0%, rgb(147, 147, 147) 100%);
 }
+.background-all {
+  /*background: rgb(248,242,244);*/
+  /*background: radial-gradient(circle, rgba(248,242,244,1) 0%, rgba(116,123,132,1) 100%);*/
+  background: rgb(231,231,231);
+  background: radial-gradient(circle, rgba(231,231,231,1) 0%, rgb(147, 147, 147) 100%);
+}
 .modal-dialog {
   box-shadow: 7px 12px 14px #505050!important;
 }

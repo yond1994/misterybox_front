@@ -5,6 +5,7 @@ import {UsersComponent} from './pages/users/users.component';
 import {AuthGuard} from './auth/guards/auth.guard';
 import {AwardsComponent} from './pages/awards/awards.component';
 import {MisteryComponent} from './pages/mistery/mistery.component';
+import {StreamComponent} from './pages/stream/stream.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,11 @@ const routes: Routes = [
     data: {
       heading: 'Orden'
     }
+  },
+  {
+    path: 'stream',
+    component: StreamComponent,
+    pathMatch: 'full'
   },
 
   {path: 'users', component: UsersComponent, pathMatch: 'full', canActivate: [AuthGuard]},

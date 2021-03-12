@@ -23,6 +23,7 @@ import { InfoextraComponent } from './components/infoextra/infoextra.component';
 import { CreateproductComponent } from './components/createproduct/createproduct.component';
 import { ProcessusersComponent } from './components/processusers/processusers.component';
 import { MisteryComponent } from './pages/mistery/mistery.component';
+import { StreamComponent } from './pages/stream/stream.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MisteryComponent } from './pages/mistery/mistery.component';
     InfoextraComponent,
     CreateproductComponent,
     ProcessusersComponent,
-    MisteryComponent
+    MisteryComponent,
+    StreamComponent
   ],
   imports: [
     LoadingBarHttpClientModule,

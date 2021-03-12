@@ -1,2 +1,7 @@
-<ngx-loading-bar></ngx-loading-bar>
-<router-outlet></router-outlet>
+<div  [ngClass]="{'bodyb': altercss}">
+  <ngx-loading-bar *ngIf="!altercss"></ngx-loading-bar>
+
+  <router-outlet></router-outlet>
+</div>
+
+
