@@ -39,8 +39,8 @@ export class StreamComponent implements OnInit {
       this.tax = res.tax;
       this.amount = res.total;
       this.totapercentaje = (res.total / 1000000) * 100;
-      if (this.totapercentaje < 40) {
-        this.totapercentaje = 40;
+      if (this.totapercentaje < 25) {
+        this.totapercentaje = 25;
       }
     }).catch((error: any) => {
     });
