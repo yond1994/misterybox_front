@@ -16,14 +16,15 @@ export class StreamComponent implements OnInit {
   amount: any = 0;
   displaynone = false;
   totapercentaje: any = 0;
+  typeparams : any = 'comun';
   constructor(private modalService: BsModalService,  private route: ActivatedRoute,
               private router: Router, private rest: ApiService, private utils: UtilsService) {
 
   }
 
   ngOnInit(): void {
+    this.typeparams = this.route.snapshot.paramMap.get('footer');
 
-    console.log(this.contador());
 
     setInterval(() => {
       this.contador();

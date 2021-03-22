@@ -36,6 +36,11 @@ const routes: Routes = [
     component: StreamComponent,
     pathMatch: 'full'
   },
+  {
+    path: 'stream/:footer',
+    component: StreamComponent,
+    pathMatch: 'full'
+  },
 
   {path: 'users', component: UsersComponent, pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'awards', component: AwardsComponent, pathMatch: 'full', canActivate: [AuthGuard]},

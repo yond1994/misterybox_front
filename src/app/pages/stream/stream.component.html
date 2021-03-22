@@ -1,7 +1,7 @@
 
 
 
-<div class="progress-bg">
+<div class="progress-bg" *ngIf="typeparams != 'footer'">
   <div  [ngStyle]="{'width': totapercentaje + '%'}"  class="progress-bar">
     <h3 class="raised">{{amount}} €</h3>
   </div>
@@ -16,4 +16,10 @@
 
 <!--<div class="text-center">-->
      <!--<h1 class="text-white" style="font-size: 4rem;">IVA {{tax}} €</h1>-->
-<!--</div>-->
+
+<div class="progress-bg-black"  *ngIf="typeparams == 'footer'">
+
+    <h3 class="colorwhite letraf">{{amount}} € /  1.000.000 € </h3>
+
+</div>
+
