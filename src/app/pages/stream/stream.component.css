@@ -1,6 +1,6 @@
 body {
   background: transparent!important;
-  font-weight: bold;
+  font-weight: bold!important;
 }
 
 .progress-bg {
@@ -30,6 +30,7 @@ body {
 .letraf {
   font-family: 'Roboto', sans-serif!important;
   font-size: 4em;
+  font-weight: bold!important;
 }
 .colorwhite {
   color: white;
