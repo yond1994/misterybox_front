@@ -23,11 +23,11 @@ export class StreamComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.typeparams = this.route.snapshot.paramMap.get('footer');
     this.contador();
     setInterval(() => {
       this.contador();
     }, 60000);
-    // this.typeparams = this.route.snapshot.paramMap.get('footer');
     console.log(this.typeparams);
   }
 
