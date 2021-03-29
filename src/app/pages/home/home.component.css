@@ -313,7 +313,7 @@
 .texto-borde {
   -webkit-text-stroke: 1px #666363;
   color: transparent;
-  font-size: 10rem;
+  font-size: 7rem;
   position: absolute;
   margin-top: 2rem;
   line-height: 133px;

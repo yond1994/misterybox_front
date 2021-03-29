@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12 text-center">
-      <h2 class="top-add-5 titleone"><span style="color: white">OPENING ON TUESDAY 02/04 AT 11PM</span>
+      <h2 class="top-add-5 titleone"><span style="color: #454545">OPENING ON TUESDAY 02/04 AT 11PM</span>
         {{day}}:{{hours}}:{{minutes}}:{{seconds}}  WAIT TIME</h2>
     </div>
     <div class="col-12 text-center">
@@ -42,19 +42,17 @@
     <div class="footer">
       <div class="container">
         <div class="row">
-          <div class="col-6 col-md-3">
-            <img class="imgmembers" src="assets/img/memberslogo.svg">
+          <div class="ccol-lg-4 col-md-4 col-6 ">
+            <img class="imgmembers w-100" src="assets/img/memberslogo.svg">
             <!--<h3 class="no-movil" style="float: right;  font-weight: bold;">-->
             <!--</h3>-->
           </div>
-          <div class=" col-6 col-md-2 no-movil">
 
-          </div>
-          <div class="col-6 col-md-3 centeralto">
+          <div class="col-lg-4 col-md-4 col-6  centeralto">
 
             <button (click)="openmodal()" class="cursor whats whathis buttonracks">🚀 WHAT IS THIS? 🚀</button>
           </div>
-          <div class="col-md-4 col-12 ">
+          <div class="col-lg-4 col-md-4 col-12">
             <p class="float-rightnoresp">
               Exclusive product for RACKS MEMBERS <br>
               BOX {{codebox ? '#' + codebox : '--' }}  {{datauser.name ? '/' + datauser.name  : ''}} </p>
