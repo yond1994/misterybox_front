@@ -65,7 +65,7 @@ export class MisteryComponent implements OnInit {
     }
     this.clock = this.source.subscribe(t => {
       this.now = new Date();
-      this.end = new Date('05/02/' + 2021 + ' 23:00');
+      this.end = new Date('06/02/' + 2021 + ' 23:00');
       // this.end = new Date('01/01/' + (this.now.getFullYear()) + ' 23:00');
       this.showDate();
     });
