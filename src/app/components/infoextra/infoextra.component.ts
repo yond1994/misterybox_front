@@ -18,6 +18,7 @@ export class InfoextraComponent implements OnInit {
   ngOnInit(): void {
     if (this.data ) {
       this.data = JSON.parse(this.data);
+      console.log(this.data);
     }
   }
   viewprimer() {

@@ -11,7 +11,7 @@
   <br>
   <div *ngIf="data">
     <div class="w-100 text-center">
-      <h1> {{data?.billingAddress?.firstName}} {{data?.billingAddress?.lastName}} </h1>
+      <h1> {{data?.billingAddress?.firstName ? data?.billingAddress?.firstName  : data?.customer?.first_name }} {{data?.billingAddress?.lastName ? data?.billingAddress?.lastName : data?.customer?.last_name}} </h1>
     </div>
 
   </div>
@@ -19,17 +19,17 @@
 <div class="modal-body" *ngIf="!viewprime">
   <br>
   <ul *ngIf="data">
-    <li>Nombre:  {{data?.billingAddress?.firstName}}</li>
-    <li>Apellido: {{data?.billingAddress?.lastName}}  </li>
+    <li>Nombre:  {{data?.billingAddress?.firstName ? data?.billingAddress?.firstName  : data?.customer?.first_name }}</li>
+    <li>Apellido: {{data?.billingAddress?.lastName ? data?.billingAddress?.lastName : data?.customer?.last_name}}  </li>
     <li >ID: {{data.id}}  </li>
-    <li >N orden: {{data.orderNumber}}  </li>
-    <li>Email: {{data.customerEmail}} </li>
-    <li>Dirección 1: {{data?.billingAddress?.address1}} </li>
-    <li>Dirección 2: {{data?.billingAddress?.address2}} </li>
-    <li>Ciudad: {{data?.billingAddress?.city}} </li>
-    <li>Estado: {{data?.billingAddress?.state}} </li>
-    <li>Codigo postal: {{data?.billingAddress?.postalCode}} </li>
-    <li>Telefono: {{data?.billingAddress?.phone}} </li>
+    <li >N orden: {{data.orderNumber ? data.orderNumber : data.id}}  </li>
+    <li>Email: {{data.customerEmail ? data.customerEmail : data.customer.email }} </li>
+    <li>Dirección 1: {{data?.billingAddress?.address1 ?  data?.billingAddress?.address1: data?.customer?.default_address?.address1}} </li>
+    <li>Dirección 2: {{data?.billingAddress?.address2 ? data?.billingAddress?.address2 : data?.customer?.default_address?.address2}} </li>
+    <li>Ciudad: {{data?.billingAddress?.city  ? data?.billingAddress?.city : data?.customer?.default_address?.city }} </li>
+    <li>Estado: {{data?.billingAddress?.state  ? data?.billingAddress?.state : data?.customer?.default_address?.country}} </li>
+    <li>Codigo postal: {{data?.billingAddress?.postalCode  ? data?.billingAddress?.postalCode : data?.customer?.default_address?.zip}} </li>
+    <li>Telefono: {{data?.billingAddress?.phone ?  data?.billingAddress?.phone: data?.customer?.phone}} </li>
   </ul>
 </div>
 <div class="modal-footer">

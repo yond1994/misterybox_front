@@ -37,8 +37,17 @@ export class MisteryComponent implements OnInit {
   datauser: any = [];
   imgaward: any = false;
   resrefresh: any = false;
+  currentDate: any;
+  hour: any = '11PM';
+  daymont: any = '';
+  nameday: any = '';
   constructor( private modalService: BsModalService,  private route: ActivatedRoute,
-               private router: Router, private rest: ApiService, private utils: UtilsService, ) { }
+               private router: Router, private rest: ApiService, private utils: UtilsService, ) {
+    const dateObj = new Date();
+    this.nameday = (dateObj.toLocaleString('en-us', {weekday:'long'})).toUpperCase();
+    this.daymont = dateObj.getUTCDate() +  '/' + dateObj.getUTCMonth();
+
+  }
 
   async ngOnInit() {
     this.idparams = this.route.snapshot.paramMap.get('id');
@@ -47,7 +56,9 @@ export class MisteryComponent implements OnInit {
       this.login();
     }
     if (this.idparams)  {
-      if (this.idparams.length > 4) {
+      if (this.idparams.length > 10) {
+        this.idparams = this.idparams;
+      } else if (this.idparams.length > 4) {
         const idp = this.idparams;
         const id = idp.substr(1);
         this.idparams = id;
@@ -63,9 +74,17 @@ export class MisteryComponent implements OnInit {
       this.extractuser(true);
 
     }
+    this.rest.get('/setting').then((res: any) => {
+      if (res.docs.length > 0) {
+        const data = res.docs[0];
+        this.currentDate = new Date(data.date_start);
+        this.hour = this.hours12(this.currentDate) + 'PM';
+      }
+    });
     this.clock = this.source.subscribe(t => {
       this.now = new Date();
-      this.end = new Date('06/02/' + 2021 + ' 23:00');
+      this.end = this.currentDate ? this.currentDate : new Date('06/02/' + 2021 + ' 23:00');
+      // this.end = new Date('06/02/' + 2021 + ' 23:00');
       // this.end = new Date('01/01/' + (this.now.getFullYear()) + ' 23:00');
       this.showDate();
     });
@@ -82,6 +101,9 @@ export class MisteryComponent implements OnInit {
     }
 
     // return { type: this.TOGGLE_BOX };
+  }
+  hours12(date) {
+    return (date.getHours() + 24) % 12 || 12;
   }
   async extractuser(open) {
     if ( this.resrefresh) {

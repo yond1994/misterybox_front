@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {ApiService} from '../../services/api.service';
 import {UtilsService} from '../../services/utils.service';
 import Swal from 'sweetalert2';
@@ -8,6 +8,7 @@ import {InfoComponent} from '../../components/info/info.component';
 import {InfoextraComponent} from '../../components/infoextra/infoextra.component';
 import {ProcessusersComponent} from '../../components/processusers/processusers.component';
 import {forEachComment} from 'tslint';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-users',
@@ -29,9 +30,45 @@ export class UsersComponent implements OnInit {
   users: any = [];
   imgview: any = false;
   viewUser: any = true;
-  constructor(private rest: ApiService,  private utils: UtilsService,  private modalService: BsModalService) { }
+  modalRef: BsModalRef;
+  public form: any = FormGroup;
+  data: any = [];
+  currentDate = new Date();
+  formDate = new FormGroup({
+    dateYMD: new FormControl(new Date()),
+    dateFull: new FormControl(new Date()),
+    dateMDY: new FormControl(new Date()),
+    dateRange: new FormControl([
+      new Date(),
+      new Date(this.currentDate.setDate(this.currentDate.getDate() + 7))
+    ])
+  });
+  bsRangeValue: Date[];
+  bsValue = new Date();
+  maxDate = new Date();
+  datesetting_id: any;
+  constructor(private rest: ApiService,  private utils: UtilsService,  private modalService: BsModalService, private fb: FormBuilder) {
+    this.form = fb.group({
+      date_start: [null],
+      date_rangue: [null, Validators.compose([Validators.required])],
+    });
+    // this.bsRangeValue = [this.bsValue, this.maxDate];
+  }
 
   ngOnInit(): void {
+    this.rest.get('/setting').then((res: any) => {
+      console.log(res.docs);
+      if (res.docs.length > 0){
+        const data = res.docs[0];
+        this.currentDate = new Date(data.date_start);
+        this.bsRangeValue = [new Date(data.date_init), new Date(data.date_finish)];
+        this.datesetting_id = data._id;
+      } else {
+        this.datesetting_id = false;
+      }
+    });
+
+
     const params = {
       limit: this.limit,
       page: this.page,
@@ -61,7 +98,12 @@ export class UsersComponent implements OnInit {
   }
 
   refreshuser() {
-    this.rest.get('/clients/refeshusers').then((res: any) => {
+    let params = {
+      date_init:  JSON.stringify(this.bsRangeValue[0]),
+      date_finish:  JSON.stringify(this.bsRangeValue[1]),
+    };
+    console.log(params);
+    this.rest.get('/clients/refeshusers', params).then((res: any) => {
       if (res) {
         this.ngOnInit();
         this.utils.openSnackBar('Se sincronizaron todos los clientes', 'success');
@@ -140,6 +182,49 @@ export class UsersComponent implements OnInit {
       this.viewUser = true;
     } else  {
       this.viewUser = false;
+    }
+  }
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+  saveSetting(event?) {
+    if (event) {
+      event.preventDefault();
+      const data = {
+        name: 'sorteo_default',
+        date_start: this.form.value.date_start,
+        date_init: this.form.value.date_rangue[0],
+        date_finish: this.form.value.date_rangue[1],
+      };
+      if (this.datesetting_id) {
+        this.rest.put('/setting/' + this.datesetting_id, data).then((res: any) => {
+          console.log('llegue a la respuesta');
+          this.utils.openSnackBar('Editado con exito', 'success');
+          this.rest.toggle();
+          this.modalRef.hide();
+          // if (this.activatedRoute.snapshot['_routerState'].url === '/login') {
+          //   this.router.navigateByUrl('/home');
+          // }
+        }).catch((error) => {
+          // if (error) {
+          //   this.utils.openSnackBar('error' , 'try again');
+          // }
+        });
+      } else {
+        this.rest.post('/setting', data).then((res: any) => {
+          console.log('llegue a la respuesta');
+          this.utils.openSnackBar('Editado con exito', 'success');
+          this.rest.toggle();
+          this.modalRef.hide();
+          // if (this.activatedRoute.snapshot['_routerState'].url === '/login') {
+          //   this.router.navigateByUrl('/home');
+          // }
+        }).catch((error) => {
+          if (error) {
+            this.utils.openSnackBar('error' , 'try again');
+          }
+        });
+      }
     }
   }
 }

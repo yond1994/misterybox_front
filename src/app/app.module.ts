@@ -24,6 +24,7 @@ import { CreateproductComponent } from './components/createproduct/createproduct
 import { ProcessusersComponent } from './components/processusers/processusers.component';
 import { MisteryComponent } from './pages/mistery/mistery.component';
 import { StreamComponent } from './pages/stream/stream.component';
+import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { StreamComponent } from './pages/stream/stream.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    BsDatepickerModule.forRoot(),
   ],
   providers: [
     ApiService,

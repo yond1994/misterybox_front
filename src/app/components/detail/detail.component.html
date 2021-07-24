@@ -29,7 +29,8 @@
         <!--<li class="blue"></li>-->
       <!--</ul>-->
       <div class="product-name" *ngIf="this.user">
-        <h1>{{this.user.billingAddress?.firstName}} <br>{{this.user.billingAddress?.lastName}}</h1>
+
+        <h1>{{data?.billingAddress?.firstName ? data?.billingAddress?.firstName  : data?.customer?.first_name }} <br> {{data?.billingAddress?.lastName ? data?.billingAddress?.lastName : data?.customer?.last_name}}</h1>
         <!--<i class="fa fa-search"></i>-->
         <!--<i class="fa fa-user"></i>-->
         <!--<i class="fa fa-shopping-cart"></i>-->
