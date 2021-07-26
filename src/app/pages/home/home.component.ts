@@ -45,6 +45,8 @@ export class HomeComponent implements OnInit {
   daymont: any = '';
   nameday: any = '';
   id_user: any = null;
+  data_init: any = null;
+  data_finish: any = null;
   constructor( private modalService: BsModalService,  private route: ActivatedRoute,
                private router: Router, private rest: ApiService, private utils: UtilsService ) {
 
@@ -58,31 +60,42 @@ export class HomeComponent implements OnInit {
     if (this.router.url === '/login') {
       this.login();
     }
-    this.route.queryParams.subscribe(params => {
-          if (params.id_user) {
-            this.id_user = params.id_user;
-            this.rest.get('/clients/order/' +  this.id_user).then((res: any) => {
-              this.idparams =  res.idorden;
-              this.getuser(this.idparams);
-            }).catch(error => {
-              this.utils.openSnackBar('No se encontro tu registro de compra', 'error', 5000);
-            });
-          }
 
-          // { orderby: "price" }
-        }
-      );
-    if (this.idparams)  {
-      this.getuser(this.idparams);
-    }
+
     this.rest.get('/setting').then((res: any) => {
       console.log(res.docs);
       if (res.docs.length > 0){
         const data = res.docs[0];
+        this.data_init = data.date_init;
+        this.data_finish = data.date_finish;
         this.currentDate = new Date(data.date_start);
         this.hour = this.hours12(this.currentDate)  + 'PM';
+        this.route.queryParams.subscribe((params: any) => {
+            if (params.id_user) {
+              this.id_user = params.id_user;
+              let paramss = {
+                date_init:  JSON.stringify(this.data_init),
+                date_finish:  JSON.stringify(this.data_finish),
+              };
+              console.log(params);
+              this.rest.get('/clients/order/' +  this.id_user, paramss).then((res: any) => {
+                this.idparams =  res.idorden;
+                this.getuser(this.idparams);
+              }).catch(error => {
+                this.utils.openSnackBar('No se encontro tu registro de compra', 'error', 5000);
+              });
+            }
+
+            // { orderby: "price" }
+          }
+        );
       }
     });
+
+
+    if (this.idparams)  {
+      this.getuser(this.idparams);
+    }
 
     this.clock = this.source.subscribe(t => {
       this.now = new Date();
