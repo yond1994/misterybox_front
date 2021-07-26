@@ -44,8 +44,9 @@ export class HomeComponent implements OnInit {
   hour: any = '11PM';
   daymont: any = '';
   nameday: any = '';
+  id_user: any = null;
   constructor( private modalService: BsModalService,  private route: ActivatedRoute,
-               private router: Router, private rest: ApiService, private utils: UtilsService, ) {
+               private router: Router, private rest: ApiService, private utils: UtilsService ) {
 
     const dateObj = new Date();
     this.nameday = (dateObj.toLocaleString('en-us', {weekday:'long'})).toUpperCase();
@@ -57,20 +58,22 @@ export class HomeComponent implements OnInit {
     if (this.router.url === '/login') {
       this.login();
     }
-    if (this.idparams)  {
-        if (this.idparams.length > 4) {
-          const idp = this.idparams;
-          const id = idp.substr(1);
-          this.idparams = id;
-        }
-        this.refreshuser().then((data) => {
-          console.log('llegue aqui', data);
-          this.resrefresh = true;
-          this.extractuser(false);
-        }).catch((error) => {
-          console.log(error);
-        });
+    this.route.queryParams.subscribe(params => {
+          if (params.id_user) {
+            this.id_user = params.id_user;
+            this.rest.get('/clients/order/' +  this.id_user).then((res: any) => {
+              this.idparams =  res.idorden;
+              this.getuser(this.idparams);
+            }).catch(error => {
+              this.utils.openSnackBar('No se encontro tu registro de compra', 'error', 5000);
+            });
+          }
 
+          // { orderby: "price" }
+        }
+      );
+    if (this.idparams)  {
+      this.getuser(this.idparams);
     }
     this.rest.get('/setting').then((res: any) => {
       console.log(res.docs);
@@ -87,6 +90,24 @@ export class HomeComponent implements OnInit {
       // this.end = new Date('01/01/' + (this.now.getFullYear()) + ' 23:00');
       this.showDate();
     });
+  }
+  getuser(params) {
+    if (params.length > 10) {
+      this.idparams = params;
+    } else if (this.idparams.length > 4) {
+      const idp = this.idparams;
+      const id = idp.substr(1);
+      this.idparams = id;
+    }
+    this.resrefresh = true;
+    this.extractuser(false);
+    // this.refreshuser().then((data) => {
+    //   console.log('llegue aqui', data);
+    //   this.resrefresh = true;
+    //   this.extractuser(false);
+    // }).catch((error) => {
+    //   console.log(error);
+    // });
   }
   toggleBox(){
     if (this.awardstrue === false) {
