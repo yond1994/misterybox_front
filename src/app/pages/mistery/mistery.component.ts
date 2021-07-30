@@ -79,6 +79,8 @@ export class MisteryComponent implements OnInit {
         const data = res.docs[0];
         this.currentDate = new Date(data.date_start);
         this.hour = this.hours12(this.currentDate) + 'PM';
+        this.nameday = ( this.currentDate.toLocaleString('en-us', {weekday :'long'})).toUpperCase();
+        this.daymont =  this.currentDate.getUTCDate() +  '/' +  (parseInt(this.currentDate.getUTCMonth()) + 1);
       }
     });
     this.clock = this.source.subscribe(t => {

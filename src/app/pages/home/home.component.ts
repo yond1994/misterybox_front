@@ -47,6 +47,8 @@ export class HomeComponent implements OnInit {
   id_user: any = null;
   data_init: any = null;
   data_finish: any = null;
+  subpendin: any = null;
+  buysubs: any = false;
   constructor( private modalService: BsModalService,  private route: ActivatedRoute,
                private router: Router, private rest: ApiService, private utils: UtilsService ) {
 
@@ -69,8 +71,13 @@ export class HomeComponent implements OnInit {
         this.data_init = data.date_init;
         this.data_finish = data.date_finish;
         this.currentDate = new Date(data.date_start);
+
+        this.nameday = ( this.currentDate.toLocaleString('en-us', {weekday :'long'})).toUpperCase();
+        this.daymont =  this.currentDate.getUTCDate() +  '/' +  (parseInt(this.currentDate.getUTCMonth()) + 1);
+
         this.hour = this.hours12(this.currentDate)  + 'PM';
         this.route.queryParams.subscribe((params: any) => {
+          console.log(params.id_user);
             if (params.id_user) {
               this.id_user = params.id_user;
               let paramss = {
@@ -78,10 +85,19 @@ export class HomeComponent implements OnInit {
                 date_finish:  JSON.stringify(this.data_finish),
               };
               console.log(params);
-              this.rest.get('/clients/order/' +  this.id_user, paramss).then((res: any) => {
+              this.rest.get('/clients/order/' +  this.id_user, paramss).then( ( res: any) => {
                 this.idparams =  res.idorden;
-                this.getuser(this.idparams);
+                if (res.date) {
+                    const  d = new Date(res.date);
+                    this.subpendin = new Date(new Date(d).setMonth(d.getMonth() + 1));
+                }
+                if (res.idorden) {
+                  this.getuser(this.idparams);
+                } else {
+                  this.buysubs = true;
+                }
               }).catch(error => {
+                console.log(error);
                 this.utils.openSnackBar('No se encontro tu registro de compra', 'error', 5000);
               });
             }

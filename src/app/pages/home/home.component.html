@@ -6,6 +6,7 @@
     </div>
     <div class="col-12 text-center">
       <h1 class="texto-borde">RACKS <br>MEMBERS <br>  MYSTERYBOX</h1>
+
       <div class="floor">
         <div class='shadow'>
           <!--<h1 class="texto-borde">THE MYSTERYBOX OF RACKS.</h1>-->
@@ -36,6 +37,16 @@
 
           </div>
         </div>
+
+      </div>
+
+
+    </div>
+    <div class="stages text-center w-100" *ngIf="buysubs">
+      <div class="boxs bounce-7 mt-5">
+        <a href="https://www.racksmafia.com/products/racks-members" target="_blank" class="cursor   buttonracks btnshop bounce-7">
+          Buy Subscription
+        </a>
       </div>
     </div>
 
@@ -50,12 +61,15 @@
 
           <div class="col-lg-4 col-md-4 col-6  centeralto" style="  text-align: -webkit-center!important;">
 
-            <button (click)="openmodal()" class="cursor whats whathis buttonracks">🚀 WHAT IS THIS? 🚀</button>
+            <button (click)="openmodal()" class="cursor whats whathis buttonracks">🚀 WHAT IS THIS? &nbsp; </button>
           </div>
           <div class="col-lg-4 col-md-4 col-12">
             <p class="float-rightnoresp">
               Exclusive product for RACKS MEMBERS <br>
-               {{codebox ? 'BOX #' + codebox : '' }}  {{datauser.name ? '/' + datauser.name  : ''}} </p>
+               {{ this.subpendin ? 'Your subscription will resume: ' : '' }} <br *ngIf="this.subpendin ">
+               {{this.subpendin ? (this.subpendin | date)   : '' }}
+               {{codebox  && !this.subpendin? 'BOX #' + codebox : '' }}
+              {{datauser.name ? '/ ' + datauser.name  : ''}} </p>
 
           </div>
         </div>
