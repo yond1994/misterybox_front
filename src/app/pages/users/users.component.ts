@@ -63,6 +63,25 @@ export class UsersComponent implements OnInit {
         this.currentDate = new Date(data.date_start);
         this.bsRangeValue = [new Date(data.date_init), new Date(data.date_finish)];
         this.datesetting_id = data._id;
+
+        const paramsrangue = {
+          date_init:  JSON.stringify(this.bsRangeValue[0]),
+          date_finish:  JSON.stringify(this.bsRangeValue[1]),
+          limit: this.limit,
+          page: this.page,
+          sort: 'name',
+          order: this.order
+        };
+        console.log(paramsrangue);
+        this.rest.get('/clients/getrangue', paramsrangue).then((response: any) => {
+          this.list = response.docs;
+          this.countpage = response.totalDocs;
+          this.hasNextPage = response.hasNextPage;
+          this.hasPrevPage = response.hasPrevPage;
+          this.totalPages = response.totalPages;
+        }).catch(e => {
+          this.utils.openSnackBar('Error rangue', 'error', 2000);
+        });
       } else {
         this.datesetting_id = false;
       }
@@ -76,11 +95,11 @@ export class UsersComponent implements OnInit {
       order: this.order
     };
     this.rest.get('/clients', params).then((response: any) => {
-      this.list = response.docs;
-      this.countpage = response.totalDocs;
-      this.hasNextPage = response.hasNextPage;
-      this.hasPrevPage = response.hasPrevPage;
-      this.totalPages = response.totalPages;
+      // this.list = response.docs;
+      // this.countpage = response.totalDocs;
+      // this.hasNextPage = response.hasNextPage;
+      // this.hasPrevPage = response.hasPrevPage;
+      // this.totalPages = response.totalPages;
     }).catch(e => {
       this.utils.openSnackBar('Error', 'error', 2000);
     });

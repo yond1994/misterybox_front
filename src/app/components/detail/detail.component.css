@@ -242,7 +242,7 @@ ul li {
   width: 81%!important;
   padding-right: 15px;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 586px) {
   .left {
     height: 185px;
     width: 75%;

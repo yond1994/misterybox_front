@@ -43,3 +43,11 @@ body {
     display: block!important;
   }
 }
+@media (min-width: 576px){
+  .modal-dialog {
+    max-width: 785px!important;
+  }
+  .modal-backdrop {
+    background-color: #f7f7f7;
+  }
+}
