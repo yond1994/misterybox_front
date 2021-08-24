@@ -12,7 +12,7 @@
     </div>
     <div class="form-label-group">
       <label >Cantidad </label>
-      <input formControlName="count" [(ngModel)]="data.count" type="text" class="form-control" placeholder="Cantidad" required autofocus>
+      <input formControlName="count" (change)="count($event)" [(ngModel)]="data.count" type="text" class="form-control" placeholder="Cantidad" required autofocus>
     </div>
     <div class="form-label-group">
       <label >Identificación </label>
@@ -31,6 +31,27 @@
       <textarea formControlName="description" [(ngModel)]="data.description" type="text"  class="form-control">
       </textarea>
     </div>
+    <div class="form-label-group">
+      <label >Tipo </label>
+      <select formControlName="type_product" [(ngModel)]="data.type_product"  class="form-control">
+        <option value="comun" selected>Comun</option>
+        <option value="nft">NFT</option>
+        <option value="nftProduct">NFT + Producto</option>
+      </select>
+    </div>
+    <div class="form-label-group"  *ngIf="data.type_product == 'nft' || data.type_product == 'nftProduct'">
+      <label >Registrar tokens </label>
+      <div  *ngFor="let item of this.tokens; index as i;" >
+<!--        <input formControlName="tokens"  [(ngModel)]="item[i]"  type="text" class="form-control" placeholder="Token" required autofocus>-->
+        <div class="input-group mb-3">
+          <input formControlName="tokens"  [(ngModel)]="this.tokens[i].value"  type="text" class="form-control" placeholder="Token" aria-label="Amount (to the nearest dollar)">
+          <div (click)="remove(item)" class="input-group-append">
+            <span class="input-group-text">x</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-sm-6">
         <div class="form-label-group">

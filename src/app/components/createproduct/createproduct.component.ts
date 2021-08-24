@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {BsModalRef} from 'ngx-bootstrap/modal';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from '../../services/api.service';
@@ -12,7 +12,8 @@ import {Router} from '@angular/router';
   templateUrl: './createproduct.component.html',
   styleUrls: ['./createproduct.component.css']
 })
-export class CreateproductComponent implements OnInit {
+
+export class CreateproductComponent implements OnInit, AfterViewInit {
   title: string;
   closeBtnName: string;
   list: any[] = [];
@@ -21,8 +22,11 @@ export class CreateproductComponent implements OnInit {
   img2: any;
   data: any = [];
   id: any;
+  tokens = [];
+
   constructor(public bsModalRef: BsModalRef, private fb: FormBuilder,  private rest: ApiService,  private utils: UtilsService,
-              public http: HttpClient, private router: Router) {
+              public http: HttpClient, private router: Router, private cdRef: ChangeDetectorRef) {
+    this.data.type_product = 'comun';
     this.form = fb.group({
       name: [null, Validators.compose([Validators.required])],
       description: [null, Validators.compose([Validators.required])],
@@ -31,7 +35,9 @@ export class CreateproductComponent implements OnInit {
       price: [null, Validators.compose([Validators.required])],
       custom_data: [null],
       img1: [null],
-      img2: [null]
+      img2: [null],
+      type_product: [null],
+      tokens: [null]
     });
 
   }
@@ -42,6 +48,7 @@ export class CreateproductComponent implements OnInit {
         console.log(res);
         this.img2 = res.custom_data.imgsecundary;
         this.img1 = res.custom_data.imgprimary;
+        this.tokens = res.tokens;
         this.data = res;
       }).catch(error => {
         console.log(error);
@@ -52,6 +59,8 @@ export class CreateproductComponent implements OnInit {
     if (event) {
       event.preventDefault();
       console.log(this.form.value);
+      console.log( this.tokens);
+      this.form.value.tokens = this.tokens;
       this.form.value.custom_data  = {
         imgprimary: this.img1,
         imgsecundary: this.img2,
@@ -104,6 +113,22 @@ export class CreateproductComponent implements OnInit {
         });
 
     }
+  }
+  count(event) {
+    if (this.data.count > 1) {
+      for (let i = 0; i < this.data.count; i++) {
+        this.tokens.push( {value: '', status: 'available'});
+      }
+    }
+  }
+  remove(obj) {
+    if (this.tokens.length > 1) {
+      this.tokens = this.tokens.filter(item => item !== obj);
+      this.data.count = this.data.count - 1;
+    }
+  }
+  ngAfterViewInit() {
+    this.cdRef.detectChanges();
   }
 
 }
