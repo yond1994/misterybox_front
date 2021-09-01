@@ -19,6 +19,8 @@
       <select class="form-control" formControlName="identification" [(ngModel)]="data.identification">
         <option value="comun">Comun</option>
         <option value="unique">Unico</option>
+        <option value="nft">NFT</option>
+        <option value="nftProduct">NFT + Producto</option>
       </select>
       <!--<input formControlName="identification" [(ngModel)]="data.identification" type="text" class="form-control" placeholder="Identificación" required autofocus>-->
     </div>
@@ -31,15 +33,15 @@
       <textarea formControlName="description" [(ngModel)]="data.description" type="text"  class="form-control">
       </textarea>
     </div>
-    <div class="form-label-group">
-      <label >Tipo </label>
-      <select formControlName="type_product" [(ngModel)]="data.type_product"  class="form-control">
-        <option value="comun" selected>Comun</option>
-        <option value="nft">NFT</option>
-        <option value="nftProduct">NFT + Producto</option>
-      </select>
-    </div>
-    <div class="form-label-group"  *ngIf="data.type_product == 'nft' || data.type_product == 'nftProduct'">
+<!--    <div class="form-label-group">-->
+<!--      <label >Tipo </label>-->
+<!--      <select formControlName="type_product" [(ngModel)]="data.type_product"  class="form-control">-->
+<!--        <option value="comun" selected>Comun</option>-->
+<!--        <option value="nft">NFT</option>-->
+<!--        <option value="nftProduct">NFT + Producto</option>-->
+<!--      </select>-->
+<!--    </div>-->
+    <div class="form-label-group"  *ngIf="data.identification == 'nft' || data.identification == 'nftProduct'">
       <label >Registrar tokens </label>
       <div  *ngFor="let item of this.tokens; index as i;" >
 <!--        <input formControlName="tokens"  [(ngModel)]="item[i]"  type="text" class="form-control" placeholder="Token" required autofocus>-->

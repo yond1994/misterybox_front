@@ -1,6 +1,9 @@
 <div class="card">
   <div class="left">
-    <img class="w-image" *ngIf="data?.custom_data?.imgsecundary" src="{{data?.custom_data?.imgsecundary}}" alt="shoe">
+    <a href="{{data?.tokens[0]?.value}}" target="_blank" *ngIf="data.identification == 'nft'">
+      <img class="w-image w-image-cripto" *ngIf="data?.custom_data?.imgsecundary" src="{{data?.custom_data?.imgsecundary}}" alt="shoe">
+    </a>
+    <img   class="w-image" *ngIf="data?.custom_data?.imgsecundary && data.identification != 'nft'" src="{{data?.custom_data?.imgsecundary}}" alt="shoe">
     <!--<i class="fa fa-long-arrow-left"></i>-->
     <!--<i class="fa fa-long-arrow-right"></i>-->
   </div>
@@ -36,7 +39,7 @@
         <!--<i class="fa fa-shopping-cart"></i>-->
         <br/>
       </div>
-      <!--<span class="foot" *ngIf="this.user"><i class="fa fa-shopping-bag"></i>{{this.user.billingAddress?.firstName}} </span>-->
+      <a href="{{data?.tokens[0]?.value}}" target="_blank" *ngIf="data.identification == 'nft'"><span class="foot" ><i class="fa fa-shopping-bag"></i>Ver Premio </span></a>
       <!--<span class="foot" *ngIf="this.user"><i class="fa fa-shopping-cart"></i>{{this.user.billingAddress?.lastName}}</span>-->
     </div>
   </div>

@@ -36,7 +36,7 @@ export class CreateproductComponent implements OnInit, AfterViewInit {
       custom_data: [null],
       img1: [null],
       img2: [null],
-      type_product: [null],
+      // type_product: [null],
       tokens: [null]
     });
 
