@@ -115,7 +115,7 @@ export class CreateproductComponent implements OnInit, AfterViewInit {
     }
   }
   count(event) {
-    if (this.data.count > 1) {
+    if (this.data.count > 0) {
       for (let i = 0; i < this.data.count; i++) {
         this.tokens.push( {value: '', status: 'available'});
       }

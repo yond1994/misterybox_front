@@ -189,8 +189,9 @@ ul li {
 .card {
   display: flex;
   align-items: center;
-  background: #252831 url('../../../assets/img/fondoracks.png')
-  no-repeat;
+  /*background: #252831 url('../../../assets/img/fondoracks.png')*/
+  /*no-repeat;*/
+  background: #1d1f21;
   height: 600px;
   width: 100%;
   margin: 0 auto;
