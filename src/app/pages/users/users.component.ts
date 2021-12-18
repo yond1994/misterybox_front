@@ -9,7 +9,7 @@ import {InfoextraComponent} from '../../components/infoextra/infoextra.component
 import {ProcessusersComponent} from '../../components/processusers/processusers.component';
 import {forEachComment} from 'tslint';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -65,8 +65,8 @@ export class UsersComponent implements OnInit {
         this.datesetting_id = data._id;
 
         const paramsrangue = {
-          date_init:  JSON.stringify(this.bsRangeValue[0]),
-          date_finish:  JSON.stringify(this.bsRangeValue[1]),
+          date_init:  moment.utc(this.bsRangeValue[0],'MM-DD-YYYY').local().format("YYYY-MM-DD HH:mm"),
+          date_finish:  moment.utc(this.bsRangeValue[1],'MM-DD-YYYY').local().format("YYYY-MM-DD HH:mm"),
           limit: this.limit,
           page: this.page,
           sort: 'name',
@@ -118,10 +118,10 @@ export class UsersComponent implements OnInit {
 
   refreshuser() {
     let params = {
-      date_init:  JSON.stringify(this.bsRangeValue[0]),
-      date_finish:  JSON.stringify(this.bsRangeValue[1]),
+      date_init:  moment.utc(this.bsRangeValue[0],'MM-DD-YYYY').local().format("YYYY-MM-DD HH:mm"),
+      date_finish:   moment.utc(this.bsRangeValue[1],'MM-DD-YYYY').local().format("YYYY-MM-DD HH:mm"),
     };
-    console.log(params);
+    console.log(params, 'sssssasd');
     this.rest.get('/clients/refeshusers', params).then((res: any) => {
       if (res) {
         this.ngOnInit();
@@ -216,6 +216,8 @@ export class UsersComponent implements OnInit {
         date_finish: this.form.value.date_rangue[1],
       };
       if (this.datesetting_id) {
+        data.date_init = moment.utc(this.form.value.date_rangue[0],'MM-DD-YYYY').local().format("YYYY-MM-DD HH:mm");
+        data.date_finish = moment.utc(this.form.value.date_rangue[1],'MM-DD-YYYY').local().format("YYYY-MM-DD HH:mm");
         this.rest.put('/setting/' + this.datesetting_id, data).then((res: any) => {
           console.log('llegue a la respuesta');
           this.utils.openSnackBar('Editado con exito', 'success');

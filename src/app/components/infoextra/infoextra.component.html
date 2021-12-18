@@ -30,6 +30,8 @@
     <li>Estado: {{data?.billingAddress?.state  ? data?.billingAddress?.state : data?.customer?.default_address?.country}} </li>
     <li>Codigo postal: {{data?.billingAddress?.postalCode  ? data?.billingAddress?.postalCode : data?.customer?.default_address?.zip}} </li>
     <li>Telefono: {{data?.billingAddress?.phone ?  data?.billingAddress?.phone: data?.customer?.phone}} </li>
+    <li>Fecha proceso: {{data.processed_at ? data.processed_at: '--'}} </li>
+
   </ul>
 </div>
 <div class="modal-footer">

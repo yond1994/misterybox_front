@@ -41,6 +41,8 @@ export class MisteryComponent implements OnInit {
   hour: any = '11PM';
   daymont: any = '';
   nameday: any = '';
+  data_init: any = null;
+  data_finish: any = null;
   constructor( private modalService: BsModalService,  private route: ActivatedRoute,
                private router: Router, private rest: ApiService, private utils: UtilsService, ) {
     const dateObj = new Date();
@@ -77,6 +79,8 @@ export class MisteryComponent implements OnInit {
     this.rest.get('/setting').then((res: any) => {
       if (res.docs.length > 0) {
         const data = res.docs[0];
+        this.data_init = data.date_init;
+        this.data_finish = data.date_finish;
         this.currentDate = new Date(data.date_start);
         this.hour = this.hours12(this.currentDate) + 'PM';
         this.nameday = ( this.currentDate.toLocaleString('en-us', {weekday :'long'})).toUpperCase();
@@ -118,7 +122,17 @@ export class MisteryComponent implements OnInit {
           this.state.open = true;
         }
       }).catch(error => {
-        this.utils.openSnackBar('No se encontro tu registro de compra', 'error', 5000);
+        // colocar sinc
+        this.rest.get('/clients/order_number/' +  this.idparams).then( ( ress: any) => {
+          // this.idparams =  res.idorden;
+          if (ress.idorden) {
+            this.ngOnInit();
+          }
+        }).catch(e => {
+          console.log(e);
+          this.utils.openSnackBar('No se encontro tu registro de compra', 'error', 5000);
+        });
+
       });
     }
   }
