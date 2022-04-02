@@ -25,22 +25,13 @@
         <!--<li>SIZE</li>-->
         <!--<li class="bg">{{tallas[1].value}}</li>-->
       <!--</ul>-->
-      <!--<ul>-->
-        <!--<li>COLOR</li>-->
-        <!--<li class="yellow"></li>-->
-        <!--<li class="black"></li>-->
-        <!--<li class="blue"></li>-->
-      <!--</ul>-->
-      <div class="product-name" *ngIf="this.user">
 
-        <h1>{{data?.billingAddress?.firstName ? data?.billingAddress?.firstName  : data?.customer?.first_name }} <br> {{data?.billingAddress?.lastName ? data?.billingAddress?.lastName : data?.customer?.last_name}}</h1>
-        <!--<i class="fa fa-search"></i>-->
-        <!--<i class="fa fa-user"></i>-->
-        <!--<i class="fa fa-shopping-cart"></i>-->
-        <br/>
-      </div>
-      <a href="{{data?.tokens[0]?.value}}" target="_blank" *ngIf="data.identification == 'nft'"><span class="foot" ><i class="fa fa-shopping-bag"></i>Ver Premio </span></a>
-      <!--<span class="foot" *ngIf="this.user"><i class="fa fa-shopping-cart"></i>{{this.user.billingAddress?.lastName}}</span>-->
+<!--      <div class="product-name" *ngIf="this.user">-->
+
+<!--        <h1>{{data?.billingAddress?.firstName ? data?.billingAddress?.firstName  : data?.customer?.first_name }} <br> {{data?.billingAddress?.lastName ? data?.billingAddress?.lastName : data?.customer?.last_name}}</h1>-->
+<!--        <br/>-->
+<!--      </div>-->
+<!--      <a href="{{data?.tokens[0]?.value}}" target="_blank" *ngIf="data.identification == 'nft'"><span class="foot" ><i class="fa fa-shopping-bag"></i>Ver Premio </span></a>-->
     </div>
   </div>
 </div>

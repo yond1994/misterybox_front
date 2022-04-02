@@ -193,7 +193,13 @@ export class HomeComponent implements OnInit {
   opendetail() {
     const initialState = {
       title: 'Presentamos 🔥Racks Members🔥',
-      id: this.datauser.box._id
+      id: this.datauser.box._id,
+      name: this.datauser.box.name,
+      img1: this.datauser.box.custom_data.imgprimary,
+      img2: this.datauser.box.custom_data.imgsecundary,
+      description: this.datauser.box.description,
+      identification: this.datauser.box.identification,
+      price: this.datauser.box.price
     };
     this.bsModalRef = this.modalService.show(DetailComponent, {initialState, class: 'modal-lg'});
     this.bsModalRef.content.closeBtnName = 'Close';

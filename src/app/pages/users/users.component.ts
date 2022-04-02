@@ -168,12 +168,22 @@ export class UsersComponent implements OnInit {
       }
     });
   }
-  opendetail(id, tallas = null, user= null) {
+  opendetail(item, tallas = null, user= null) {
+    // const initialState = {
+    //   title: 'Presentamos 🔥Racks Members🔥',
+    //   id: id,
+    //   tallas : tallas ? tallas : null,
+    //   user : user ? user : null
+    // };
     const initialState = {
       title: 'Presentamos 🔥Racks Members🔥',
-      id: id,
-      tallas : tallas ? tallas : null,
-      user : user ? user : null
+      id: item._id,
+      name: item.box.name,
+      img1: item.box.custom_data.imgprimary,
+      img2: item.box.custom_data.imgsecundary,
+      description: item.box.description,
+      identification: item.box.identification,
+      price: item.box.price
     };
     this.bsModalRef = this.modalService.show(DetailComponent, {initialState, class: 'modal-lg'});
     this.bsModalRef.content.closeBtnName = 'Close';

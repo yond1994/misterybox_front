@@ -98,10 +98,21 @@ export class AwardsComponent implements OnInit {
     this.bsModalRef = this.modalService.show(CreateproductComponent, {initialState, class: 'modal-lg'});
     this.bsModalRef.content.closeBtnName = 'Close';
   }
-  opendetail(id) {
+  opendetail(item) {
+    // const initialState = {
+    //   title: 'Presentamos 🔥Racks Members🔥',
+    //   id: id
+    // };
+
     const initialState = {
       title: 'Presentamos 🔥Racks Members🔥',
-      id: id
+      id: item._id,
+      name: item.name,
+      img1: item.custom_data.imgprimary,
+      img2: item.custom_data.imgsecundary,
+      description: item.description,
+      identification: item.identification,
+      price: item.price
     };
     this.bsModalRef = this.modalService.show(DetailComponent, {initialState, class: 'modal-lg'});
     this.bsModalRef.content.closeBtnName = 'Close';
